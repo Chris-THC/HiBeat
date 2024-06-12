@@ -14,10 +14,11 @@ export default StyleSheet.create({
   artistName: {
     color: '#111',
     textAlign: 'center',
+    fontWeight: '500',
+    fontSize: 15,
   },
   artistContentInfo: {
     flexDirection: 'row',
-    backgroundColor: 'cyan',
     width: 110,
     justifyContent: 'space-between',
     margin: 3,
