@@ -3,6 +3,7 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../types/screenStack';
+import {TopArtist} from '../../components/TopArtist/TopArtist';
 
 export const Home = () => {
   const navigation =
@@ -17,6 +18,7 @@ export const Home = () => {
         onPress={() => navigation.navigate('Album')}>
         <Text style={{color: '#fff', fontSize: 18}}>Go to play</Text>
       </TouchableOpacity>
+      <TopArtist />
     </View>
   );
 };
