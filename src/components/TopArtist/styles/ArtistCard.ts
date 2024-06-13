@@ -1,25 +1,30 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
+  fullContainer: {
+    marginRight: 100,
+    height: 'auto',
+  },
   topArtistContent: {
     flexDirection: 'column',
   },
   imageArtistCard: {
-    height: 100,
-    width: 100,
-    //   borderRadius: 100,
+    height: 90,
+    width: 90,
     borderTopRightRadius: 8,
     borderBottomRightRadius: 8,
   },
   artistName: {
-    color: '#111',
     textAlign: 'center',
     fontWeight: '500',
     fontSize: 15,
+    textShadowColor: '#111',
+    textShadowOffset: {width: -0.2, height: 0.2},
+    textShadowRadius: 1,
   },
   artistContentInfo: {
     flexDirection: 'row',
-    width: 110,
+    width: 85,
     justifyContent: 'space-between',
     margin: 3,
     borderTopLeftRadius: 8,

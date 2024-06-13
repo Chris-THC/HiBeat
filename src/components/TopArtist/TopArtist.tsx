@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, ScrollView} from 'react-native';
 import {useTopArtistGlobal} from '../../hooks/UseTopArtist/UseTopArtist';
 import {ArtistCard} from './components/ArtistCard';
 import styles from './styles/TopArtistSryles';
@@ -17,9 +17,13 @@ export const TopArtist = () => {
 
   return (
     <View style={styles.topArtistContent}>
-      {Top10?.map((artistItem, index) => (
-        <ArtistCard key={index} artistInfo={artistItem} />
-      ))}
+      <ScrollView horizontal={true}>
+        <View style={{flexDirection: 'row', width:"auto"}}>
+          {Top10?.map((artistItem, index) => (
+            <ArtistCard key={index} artistInfo={artistItem} />
+          ))}
+        </View>
+      </ScrollView>
     </View>
   );
 };
