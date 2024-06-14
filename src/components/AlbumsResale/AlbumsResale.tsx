@@ -30,7 +30,7 @@ export const AlbumsResale = () => {
         </View>
       </View>
       <View style={styles.albumGrid}>
-        {albumsRelase!.slice(0, 6).map((albumItem, index) => (
+        {albumsRelase!.slice(0, 9).map((albumItem, index) => (
           <AlbumRelaseCrad key={index} albumRealseInfo={albumItem} />
         ))}
       </View>

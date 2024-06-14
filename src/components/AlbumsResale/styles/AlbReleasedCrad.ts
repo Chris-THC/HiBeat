@@ -2,8 +2,8 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   imageAlbumCard: {
-    height: 165,
-    width: 165,
+    height: 105,
+    width: 105,
     borderRadius: 8,
   },
   textArtistName: {
@@ -16,12 +16,13 @@ export default StyleSheet.create({
   },
   contentCard: {
     // backgroundColor: 'orange',
-    margin: 5,
+    borderRadius: 8,
+    marginVertical: 5,
+    marginHorizontal: 8,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-
-    height: 220,
-    width: 190,
+    height: 155,
+    width: 120,
   },
 });
