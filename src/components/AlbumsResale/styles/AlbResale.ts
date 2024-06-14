@@ -15,7 +15,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: '5%',
-    marginVertical: 10,
+    marginVertical: 16,
+    alignItems: 'center',
   },
   albumsResaleMainTitle: {
     color: '#fff',

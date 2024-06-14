@@ -17,15 +17,15 @@ export default StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 1)', // Color de la sombra
     textShadowOffset: {width: -1, height: 1}, // Desplazamiento de la sombra
     textShadowRadius: 10, // Radio de desenfoque de la sombra
-    backgroundColor: 'rgba(0, 0, 0, 0.3)', 
+    backgroundColor: 'rgba(0, 0, 0, 0.2)', 
     borderRadius: 5, // Radio de la sombra
   },
   contentCard: {
-    marginVertical: 8,
+    marginVertical: 6,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 155,
+    height: 145,
     flexBasis: '30%',
   },
 });

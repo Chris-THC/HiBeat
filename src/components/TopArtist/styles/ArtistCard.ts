@@ -15,11 +15,13 @@ export default StyleSheet.create({
     borderBottomRightRadius: 8,
   },
   artistName: {
+    fontSize: 16,
+    fontWeight: '600',
     textAlign: 'center',
-    fontWeight: '500',
-    fontSize: 15,
-    textShadowColor: '#111',
-    textShadowOffset: {width: -0.2, height: 0.2},
+    marginTop: 8,
+    flexShrink: 1,
+    textShadowColor: 'rgba(0, 0, 0, .3)',
+    textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 1,
   },
   artistContentInfo: {

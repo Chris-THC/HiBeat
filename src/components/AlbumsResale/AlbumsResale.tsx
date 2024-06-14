@@ -3,6 +3,7 @@ import {Text, View, TouchableOpacity} from 'react-native';
 import {useAlbumRelase} from '../../hooks/UseAlbumsRelase/UseAlbumRelase';
 import {AlbumRelaseCrad} from './components/AlbumRelaseCrad';
 import styles from './styles/AlbResale';
+import {FontAwesome6} from '@expo/vector-icons';
 
 export const AlbumsResale = () => {
   const {isLoading: loadAlbum, data: albumsRelase} = useAlbumRelase();
@@ -13,17 +14,18 @@ export const AlbumsResale = () => {
 
   return (
     <View style={styles.albResaleContainer}>
-      <View
-        style={styles.mainTitleContainer}>
+      <TouchableOpacity style={styles.mainTitleContainer}>
         <View>
           <Text style={styles.albumsResaleMainTitle}>Recently albums</Text>
         </View>
         <View>
-          <TouchableOpacity>
-            <Text style={{color: '#fff', fontSize: 30}}>{'-->'}</Text>
-          </TouchableOpacity>
+          <View>
+            <Text>
+              <FontAwesome6 name="arrow-right-long" size={30} color="#fff" />
+            </Text>
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
       <View style={styles.albumGrid}>
         {albumsRelase!.slice(0, 9).map((albumItem, index) => (
           <AlbumRelaseCrad key={index} albumRealseInfo={albumItem} />

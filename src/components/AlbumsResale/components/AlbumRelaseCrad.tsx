@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, Image} from 'react-native';
+import {Text, TouchableOpacity, Image} from 'react-native';
 import {AlbumRelaseInterface} from '../../../interfaces/AlbumsRelase/AlbumsRelase';
 import styles from '../styles/AlbReleasedCrad';
 import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
@@ -23,7 +23,7 @@ export const AlbumRelaseCrad: React.FC<ArtistCard> = ({albumRealseInfo}) => {
   }, []);
 
   return (
-    <View
+    <TouchableOpacity
       style={[
         styles.contentCard,
         {
@@ -41,6 +41,6 @@ export const AlbumRelaseCrad: React.FC<ArtistCard> = ({albumRealseInfo}) => {
         ellipsizeMode="tail">
         {albumRealseInfo.title}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
