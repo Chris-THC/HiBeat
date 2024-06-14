@@ -8,6 +8,7 @@ import styles from './styles/HomeSyles';
 import {StatusUpBar} from '../../components/StatusBar/StatusUpBar';
 import {colorBase} from '../../enums/AppColors';
 import {AlbumsResale} from '../../components/AlbumsResale/AlbumsResale';
+import {RandomPlayList} from '../../components/RandomPlaylist/RandomPlayList';
 
 export const Home = () => {
   // const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -18,11 +19,13 @@ export const Home = () => {
 
       <ScrollView>
         <View>
-          <Text style={styles.artistMainTitle}>Top Artist</Text>
           <TopArtist />
         </View>
         <View>
           <AlbumsResale />
+        </View>
+        <View>
+          <RandomPlayList />
         </View>
       </ScrollView>
     </View>

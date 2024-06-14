@@ -8,4 +8,11 @@ export default StyleSheet.create({
   artistName: {
     color: '#111',
   },
+  artistMainTitle: {
+    color: '#fff',
+    fontSize: 25,
+    marginVertical: 10,
+    paddingLeft: 10,
+    width: '50%',
+  },
 });

@@ -17,6 +17,9 @@ export const TopArtist = () => {
 
   return (
     <View style={styles.topArtistContent}>
+      <View>
+        <Text style={styles.artistMainTitle}>Top Artist</Text>
+      </View>
       <ScrollView horizontal={true}>
         <View style={{flexDirection: 'row', width: 'auto'}}>
           {Top10?.map((artistItem, index) => (
