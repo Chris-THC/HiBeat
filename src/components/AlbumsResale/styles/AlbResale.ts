@@ -8,8 +8,14 @@ export default StyleSheet.create({
   albumGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
+  },
+  mainTitleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: '5%',
+    marginVertical: 10,
   },
   albumsResaleMainTitle: {
     color: '#fff',

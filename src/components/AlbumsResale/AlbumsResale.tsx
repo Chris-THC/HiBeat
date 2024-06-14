@@ -14,14 +14,9 @@ export const AlbumsResale = () => {
   return (
     <View style={styles.albResaleContainer}>
       <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginHorizontal: 10,
-        }}>
+        style={styles.mainTitleContainer}>
         <View>
-          <Text style={styles.albumsResaleMainTitle}>Albums released!</Text>
+          <Text style={styles.albumsResaleMainTitle}>Recently albums</Text>
         </View>
         <View>
           <TouchableOpacity>
