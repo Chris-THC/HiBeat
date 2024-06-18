@@ -1,12 +1,25 @@
 import React from 'react';
-import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import styles from '../styles/RandPlayliStyle';
+import {RootStackParamList} from '../../../types/screenStack';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useRandomPlaylist} from '../../../hooks/UsePlaylist/UsePlaylist';
 import {PlaylistCard} from '../components/PlaylistCard';
 import {FontAwesome6} from '@expo/vector-icons';
+import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {useRandomPlaylistStore} from '../../../store/randomPlatlistStore/randomPlaylistStore';
 
 export const RandomPlayList = () => {
   const {isLoading, data: albumsArray} = useRandomPlaylist();
+  const navigateTo =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const {setRandomPlaylistStore} = useRandomPlaylistStore();
+
+  const ChangeScreen = () => {
+    setRandomPlaylistStore(albumsArray);
+    navigateTo.navigate('RandomPlaylist');
+  };
+
   if (isLoading) {
     return (
       <View>
@@ -17,7 +30,9 @@ export const RandomPlayList = () => {
 
   return (
     <View>
-      <TouchableOpacity style={styles.mainTitleContainer}>
+      <TouchableOpacity
+        onPress={ChangeScreen}
+        style={styles.mainTitleContainer}>
         <View>
           <Text style={styles.randomPlaylistMainTitle}>
             Some random playlist
