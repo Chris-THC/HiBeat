@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
-import {useTopArtistGlobal} from '../../hooks/UseTopArtist/UseTopArtist';
-import {ArtistCard} from './components/ArtistCard';
-import styles from './styles/TopArtistSryles';
+import {useTopArtistGlobal} from '../../../hooks/UseTopArtist/UseTopArtist';
+import {ArtistCard} from '../components/ArtistCard';
+import styles from '../styles/TopArtistSryles';
 
 export const TopArtist = () => {
   const {data: Top10, isLoading: isLoadingTop10} = useTopArtistGlobal();

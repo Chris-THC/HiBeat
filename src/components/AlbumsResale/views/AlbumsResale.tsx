@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
-import {useAlbumRelase} from '../../hooks/UseAlbumsRelase/UseAlbumRelase';
-import {AlbumRelaseCrad} from './components/AlbumRelaseCrad';
-import styles from './styles/AlbResale';
+import {useAlbumRelase} from '../../../hooks/UseAlbumsRelase/UseAlbumRelase';
+import {AlbumRelaseCrad} from '../components/AlbumRelaseCrad';
+import styles from '../styles/AlbResale';
 import {FontAwesome6} from '@expo/vector-icons';
 
 export const AlbumsResale = () => {

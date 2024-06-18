@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
-import styles from './styles/RandPlayliStyle';
-import {useRandomPlaylist} from '../../hooks/UsePlaylist/UsePlaylist';
-import {PlaylistCard} from './components/PlaylistCard';
+import styles from '../styles/RandPlayliStyle';
+import {useRandomPlaylist} from '../../../hooks/UsePlaylist/UsePlaylist';
+import {PlaylistCard} from '../components/PlaylistCard';
 import {FontAwesome6} from '@expo/vector-icons';
 
 export const RandomPlayList = () => {
