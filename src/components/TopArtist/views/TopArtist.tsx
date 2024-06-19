@@ -1,5 +1,6 @@
+import {FlashList} from '@shopify/flash-list';
 import React from 'react';
-import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import {Text, View} from 'react-native';
 import {useTopArtistGlobal} from '../../../hooks/UseTopArtist/UseTopArtist';
 import {ArtistCard} from '../components/ArtistCard';
 import styles from '../styles/TopArtistSryles';
@@ -20,15 +21,13 @@ export const TopArtist = () => {
       <View>
         <Text style={styles.artistMainTitle}>Top Artist</Text>
       </View>
-      <ScrollView horizontal={true}>
-        <View style={{flexDirection: 'row', width: 'auto'}}>
-          {/* Juat add this to add a range into the map: .slice(0, 10),map(()) */}
-          
-          {Top10!.map((artistItem, index) => (
-            <ArtistCard key={index} artistInfo={artistItem} />
-          ))}
-        </View>
-      </ScrollView>
+      <FlashList
+        data={Top10}
+        renderItem={({item}) => <ArtistCard artistInfo={item} />}
+        estimatedItemSize={20}
+        scrollEnabled={true}
+        horizontal={true}
+      />
     </View>
   );
 };
