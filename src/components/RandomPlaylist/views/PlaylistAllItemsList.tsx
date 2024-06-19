@@ -1,25 +1,30 @@
-import { FontAwesome6 } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import {FontAwesome6} from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {FlashList} from '@shopify/flash-list';
 import React from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
-import { RandomPlaylistInterface } from '../../../interfaces/randomPlayList/RandomPlaylist';
-import { RootStackParamList } from '../../../types/screenStack';
-import { PlaylistCard } from '../components/PlaylistCard';
-import styles from '../styles/PlaylistAllItemsListStyles'
+import {Text, TouchableOpacity, View} from 'react-native';
+import {RandomPlaylistInterface} from '../../../interfaces/randomPlayList/RandomPlaylist';
+import {RootStackParamList} from '../../../types/screenStack';
+import {PlaylistCard} from '../components/PlaylistCard';
+import styles from '../styles/PlaylistAllItemsListStyles';
+
 interface PropRandomPlaylistInfo {
   playlist: RandomPlaylistInterface[] | null | undefined;
 }
 
-export const PlaylistAllItemsList: React.FC<PropRandomPlaylistInfo> = ({playlist}) => {
-  const navigateTo = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+export const PlaylistAllItemsList: React.FC<PropRandomPlaylistInfo> = ({
+  playlist,
+}) => {
+  const navigateTo =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const GoBackScreen = () => {
     navigateTo.goBack();
   };
 
   return (
-    <View>
+    <>
       <TouchableOpacity
         onPress={GoBackScreen}
         style={styles.mainTitleContainer}>
@@ -35,7 +40,8 @@ export const PlaylistAllItemsList: React.FC<PropRandomPlaylistInfo> = ({playlist
         </View>
         <View></View>
       </TouchableOpacity>
-      <FlatList
+
+      {/* <FlatList
         data={playlist}
         numColumns={2}
         columnWrapperStyle={{gap: 8, paddingHorizontal: 5}}
@@ -44,10 +50,16 @@ export const PlaylistAllItemsList: React.FC<PropRandomPlaylistInfo> = ({playlist
         renderItem={playlistItem => {
           return <PlaylistCard playlist={playlistItem.item} />;
         }}
+      /> */}
+
+      <FlashList
+        data={playlist}
+        numColumns={2}
+        scrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+        estimatedItemSize={50}
+        renderItem={({item}) => <PlaylistCard playlist={item} />}
       />
-    </View>
+    </>
   );
 };
-
-
-

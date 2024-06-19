@@ -27,6 +27,7 @@ export const TopArtist = () => {
         estimatedItemSize={20}
         scrollEnabled={true}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
       />
     </View>
   );
