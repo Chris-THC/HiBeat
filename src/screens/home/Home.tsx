@@ -19,10 +19,10 @@ export const Home = () => {
 
       <ScrollView>
         <View>
-          {/* <TopArtist /> */}
+          <TopArtist />
         </View>
         <View>
-          {/* <AlbumsResale /> */}
+          <AlbumsResale />
         </View>
         <View>
           <RandomPlayList />
@@ -31,11 +31,3 @@ export const Home = () => {
     </View>
   );
 };
-
-{
-  /* <TouchableOpacity
-        style={{height: 35, width: 200, backgroundColor: 'orange'}}
-        onPress={() => navigation.navigate('Album')}>
-        <Text style={{color: '#fff', fontSize: 18}}>Go to play</Text>
-      </TouchableOpacity> */
-}
