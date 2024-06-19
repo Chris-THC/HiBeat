@@ -49,9 +49,9 @@ export const RandomPlayList = () => {
       <ScrollView horizontal={true}>
         <View style={styles.mainContainer}>
           {albumsArray!.slice(0, 10).map((albumItem, index) => (
-            <TouchableOpacity key={index}>
-              <PlaylistCard playlistInfo={albumItem} />
-            </TouchableOpacity>
+            <View style={{marginHorizontal: 8}} key={index}>
+              <PlaylistCard playlist={albumItem} />
+            </View>
           ))}
         </View>
       </ScrollView>

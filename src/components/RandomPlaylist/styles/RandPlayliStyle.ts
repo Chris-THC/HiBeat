@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   mainContainer: {
     flexDirection: 'row',
+    height: 250,
   },
   mainTitleContainer: {
     flexDirection: 'row',

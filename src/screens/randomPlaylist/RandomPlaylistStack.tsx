@@ -7,10 +7,8 @@ import {ScrollView, View} from 'react-native';
 export const RandomPlayListStack = () => {
   const {randomPlaylistStore} = useRandomPlaylistStore();
   return (
-    <View style={Styles.homeContainer}>
-      <ScrollView>
-        <PlaylistAllItemsList playlist={randomPlaylistStore} />
-      </ScrollView>
+    <View style={Styles.ramdomPlaylistContainer}>
+      <PlaylistAllItemsList playlist={randomPlaylistStore} />
     </View>
   );
 };

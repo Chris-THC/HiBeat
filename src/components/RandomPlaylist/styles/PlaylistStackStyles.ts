@@ -1,9 +1,16 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  mainContainer: {},
-  textStackColor: {
-    fontSize: 18,
-    color: '#fff',
+  mainContainer: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
+    height: 250,
+    width: 200,
+    borderRadius: 8,
+    padding: 0,
+    margin: 0,
+    flexDirection: 'column',
   },
 });

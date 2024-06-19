@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, View, TouchableOpacity} from 'react-native';
 import {RandomPlaylistInterface} from '../../../interfaces/randomPlayList/RandomPlaylist';
-import Styles from '../styles/PlaylistStackStyles';
+import {PlaylistCard} from '../components/PlaylistCard';
 
 interface PropRandomPlaylistInfo {
   playlist: RandomPlaylistInterface[] | null | undefined;
@@ -9,12 +9,17 @@ interface PropRandomPlaylistInfo {
 
 const PlaylistAllItemsList: React.FC<PropRandomPlaylistInfo> = ({playlist}) => {
   return (
-    <View style={Styles.mainContainer}>
-      {playlist!.map((playlist, index) => (
-        <View key={index}>
-          <Text>{playlist.title}</Text>
-        </View>
-      ))}
+    <View>
+      <FlatList
+        data={playlist}
+        numColumns={2}
+        columnWrapperStyle={{gap: 10, paddingHorizontal: 8}}
+        contentContainerStyle={{gap: 10, marginTop: 20}}
+        showsHorizontalScrollIndicator={false}
+        renderItem={playlistItem => {
+          return <PlaylistCard playlist={playlistItem.item} />;
+        }}
+      />
     </View>
   );
 };
