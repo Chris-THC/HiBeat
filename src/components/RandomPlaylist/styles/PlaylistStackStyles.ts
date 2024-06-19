@@ -13,4 +13,9 @@ export default StyleSheet.create({
     margin: 0,
     flexDirection: 'column',
   },
+  textStackColor: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });

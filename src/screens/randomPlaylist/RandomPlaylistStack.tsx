@@ -1,5 +1,5 @@
 import React from 'react';
-import PlaylistAllItemsList from '../../components/RandomPlaylist/views/PlaylistAllItemsList';
+import {PlaylistAllItemsList} from '../../components/RandomPlaylist/views/PlaylistAllItemsList';
 import {useRandomPlaylistStore} from '../../store/randomPlatlistStore/randomPlaylistStore';
 import Styles from './styles/RandPlaylistStyles';
 import {ScrollView, View} from 'react-native';

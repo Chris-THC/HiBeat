@@ -22,10 +22,10 @@ export const TopArtist = () => {
       </View>
       <ScrollView horizontal={true}>
         <View style={{flexDirection: 'row', width: 'auto'}}>
-          {Top10?.map((artistItem, index) => (
-            <TouchableOpacity key={index}>
-              <ArtistCard artistInfo={artistItem} />
-            </TouchableOpacity>
+          {/* Juat add this to add a range into the map: .slice(0, 10),map(()) */}
+          
+          {Top10!.map((artistItem, index) => (
+            <ArtistCard key={index} artistInfo={artistItem} />
           ))}
         </View>
       </ScrollView>

@@ -1,16 +1,17 @@
+import { FontAwesome6 } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
-import {FlatList, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {RandomPlaylistInterface} from '../../../interfaces/randomPlayList/RandomPlaylist';
-import {PlaylistCard} from '../components/PlaylistCard';
-import {FontAwesome6} from '@expo/vector-icons';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../../types/screenStack';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { RandomPlaylistInterface } from '../../../interfaces/randomPlayList/RandomPlaylist';
+import { RootStackParamList } from '../../../types/screenStack';
+import { PlaylistCard } from '../components/PlaylistCard';
+import styles from '../styles/PlaylistAllItemsListStyles'
 interface PropRandomPlaylistInfo {
   playlist: RandomPlaylistInterface[] | null | undefined;
 }
 
-const PlaylistAllItemsList: React.FC<PropRandomPlaylistInfo> = ({playlist}) => {
+export const PlaylistAllItemsList: React.FC<PropRandomPlaylistInfo> = ({playlist}) => {
   const navigateTo = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const GoBackScreen = () => {
@@ -48,18 +49,5 @@ const PlaylistAllItemsList: React.FC<PropRandomPlaylistInfo> = ({playlist}) => {
   );
 };
 
-export default PlaylistAllItemsList;
 
-const styles = StyleSheet.create({
-  mainTitleContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: '5%',
-    marginVertical: 16,
-    alignItems: 'center',
-  },
-  randomPlaylistMainTitle: {
-    color: '#fff',
-    fontSize: 25,
-  },
-});
+

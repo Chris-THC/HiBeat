@@ -5,7 +5,7 @@ import Styles from './../styles/PlaylistStackStyles';
 const PlaylistStackComponent = () => {
   return (
     <View>
-      <Text style={Styles.textStackColor}>PlaylistStackComponent</Text>
+      <Text style={Styles.textStackColor}>Playlist Stack Component</Text>
     </View>
   );
 };

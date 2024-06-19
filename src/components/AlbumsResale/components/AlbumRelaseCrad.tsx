@@ -1,29 +1,33 @@
-import React, {useEffect, useState} from 'react';
-import {Text, TouchableOpacity, Image} from 'react-native';
-import {AlbumRelaseInterface} from '../../../interfaces/AlbumsRelase/AlbumsRelase';
+import RNBounceable from '@freakycoder/react-native-bounceable';
+import React, { useEffect, useState } from 'react';
+import { Text } from 'react-native';
+import FastImage from 'react-native-fast-image';
+import { AlbumRelaseInterface } from '../../../interfaces/AlbumsRelase/AlbumsRelase';
+import { AndroidColors } from '../../../interfaces/colorsInterface/Colors';
+import { ImageColorPalette } from '../../../utils/colors/ColorsFromImg';
 import styles from '../styles/AlbReleasedCrad';
-import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
-import {ImageColorPalette} from '../../../utils/colors/ColorsFromImg';
 
 interface ArtistCard {
   albumRealseInfo: AlbumRelaseInterface;
 }
 
 export const AlbumRelaseCrad: React.FC<ArtistCard> = ({albumRealseInfo}) => {
-  const [colorTaget, setColorTaget] = useState<
-    AndroidColors | null | undefined
-  >(null);
+  const [colorTaget, setColorTaget] = useState<AndroidColors | null | undefined>(null);
+
+  const GetColorImage = async () => {
+    const colorImg = await ImageColorPalette(albumRealseInfo.artwork);
+    setColorTaget(colorImg);
+  };
 
   useEffect(() => {
-    const GetColorImage = async () => {
-      const colorImg = await ImageColorPalette(albumRealseInfo.artwork);
-      setColorTaget(colorImg);
-    };
     GetColorImage();
   }, []);
 
   return (
-    <TouchableOpacity
+    <RNBounceable
+      onPress={() => {
+        console.log(albumRealseInfo.browseId);
+      }}
       style={[
         styles.contentCard,
         {
@@ -31,9 +35,13 @@ export const AlbumRelaseCrad: React.FC<ArtistCard> = ({albumRealseInfo}) => {
           borderRadius: 10,
         },
       ]}>
-      <Image
+      <FastImage
         style={styles.imageAlbumCard}
-        source={{uri: albumRealseInfo.artwork}}
+        source={{
+          uri: albumRealseInfo.artwork,
+          priority: FastImage.priority.high,
+        }}
+        resizeMode={FastImage.resizeMode.cover}
       />
       <Text
         style={[styles.textArtistName]}
@@ -41,6 +49,6 @@ export const AlbumRelaseCrad: React.FC<ArtistCard> = ({albumRealseInfo}) => {
         ellipsizeMode="tail">
         {albumRealseInfo.title}
       </Text>
-    </TouchableOpacity>
+    </RNBounceable>
   );
 };

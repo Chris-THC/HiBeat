@@ -1,10 +1,6 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  mainContainer: {
-    flexDirection: 'row',
-    height: 250,
-  },
   mainTitleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -15,5 +11,5 @@ export default StyleSheet.create({
   randomPlaylistMainTitle: {
     color: '#fff',
     fontSize: 25,
-  }
+  },
 });

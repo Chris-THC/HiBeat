@@ -1,20 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {Text, View, Image} from 'react-native';
-import {RandomPlaylistInterface} from '../../../interfaces/randomPlayList/RandomPlaylist';
-import styles from '../styles/PlaylistCardstyles';
 import {FontAwesome} from '@expo/vector-icons';
 import RNBounceable from '@freakycoder/react-native-bounceable';
+import React, {useEffect, useState} from 'react';
+import {Text, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
+import {RandomPlaylistInterface} from '../../../interfaces/randomPlayList/RandomPlaylist';
 import {ImageColorPalette} from '../../../utils/colors/ColorsFromImg';
+import styles from '../styles/PlaylistCardstyles';
 
 interface PropCard {
   playlist: RandomPlaylistInterface;
 }
 
 export const PlaylistCard: React.FC<PropCard> = ({playlist}) => {
-  const [colorTaget, setColorTaget] = useState<
-    AndroidColors | null | undefined
-  >(null);
+  const [colorTaget, setColorTaget] = useState<AndroidColors | null | undefined>(null);
 
   const GetColorImage = async () => {
     const colorImg = await ImageColorPalette(playlist.artwork);
@@ -37,7 +36,14 @@ export const PlaylistCard: React.FC<PropCard> = ({playlist}) => {
           borderColor: `${!colorTaget ? '#22242a' : colorTaget?.darkMuted}`,
         },
       ]}>
-      <Image style={styles.imageCrad} source={{uri: playlist.artwork}} />
+      <FastImage
+        style={styles.imageCrad}
+        source={{
+          uri: playlist.artwork,
+          priority: FastImage.priority.high,
+        }}
+        resizeMode={FastImage.resizeMode.cover}
+      />
 
       <Text style={styles.titleCrad} numberOfLines={1} ellipsizeMode="tail">
         {playlist.title}

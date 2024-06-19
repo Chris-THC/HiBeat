@@ -1,14 +1,11 @@
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
-import {TopArtist} from '../../components/TopArtist/views/TopArtist';
-import {RootStackParamList} from '../../types/screenStack';
+import { ScrollView, View } from 'react-native';
+import { AlbumsResale } from '../../components/AlbumsResale/views/AlbumsResale';
+import { RandomPlayList } from '../../components/RandomPlaylist/views/RandomPlayList';
+import { StatusUpBar } from '../../components/StatusBar/StatusUpBar';
+import { TopArtist } from '../../components/TopArtist/views/TopArtist';
+import { colorBase } from '../../enums/AppColors';
 import styles from './styles/HomeSyles';
-import {StatusUpBar} from '../../components/StatusBar/StatusUpBar';
-import {colorBase} from '../../enums/AppColors';
-import {AlbumsResale} from '../../components/AlbumsResale/views/AlbumsResale';
-import {RandomPlayList} from '../../components/RandomPlaylist/views/RandomPlayList';
 
 export const Home = () => {
   // const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
