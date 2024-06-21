@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Home} from '../screens/home/Home';
 import {Album} from '../screens/album/Album';
 import {RandomPlayListStack} from '../screens/randomPlaylist/RandomPlaylistStack';
+import {Artist} from '../screens/artist/Artist';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -15,6 +16,7 @@ const Navigation = () => {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Album" component={Album} />
         <Stack.Screen name="RandomPlaylist" component={RandomPlayListStack} />
+        <Stack.Screen name="Artist" component={Artist} />
       </Stack.Navigator>
     </NavigationContainer>
   );

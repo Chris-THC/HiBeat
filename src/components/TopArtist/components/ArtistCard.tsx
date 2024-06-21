@@ -6,12 +6,17 @@ import { TopArtistInterface } from '../../../interfaces/TopArtistInterface/TopAr
 import { AndroidColors } from '../../../interfaces/colorsInterface/Colors';
 import { ImageColorPalette } from '../../../utils/colors/ColorsFromImg';
 import styles from './../styles/ArtistCard';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../types/screenStack';
 
 interface PropsArtistCard {
   artistInfo: TopArtistInterface;
 }
 
 export const ArtistCard: React.FC<PropsArtistCard> = ({artistInfo}) => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   const [colorTaget, setColorTaget] = useState<AndroidColors | null | undefined>(null);
 
   const GetColorImage = async () => {
@@ -23,11 +28,14 @@ export const ArtistCard: React.FC<PropsArtistCard> = ({artistInfo}) => {
     GetColorImage();
   }, []);
 
+
+  const GoToArtistScreen = () => { 
+     navigation.navigate("Artist")    
+   }
+
   return (
     <RNBounceable
-      onPress={() => {
-        console.log(artistInfo.idArtist);
-      }}
+      onPress={GoToArtistScreen}
       style={[styles.fullContainer]}>
       <View
         style={[
