@@ -8,17 +8,15 @@ interface PropArtist {
   artistInfo: ArtistFull | null | undefined;
 }
 
-export const ArtistHeader: React.FC<PropArtist> = ({artistInfo}) => {
+export const ArtistImage: React.FC<PropArtist> = ({artistInfo}) => {
   return (
-    <View style={styles.artistHeaderContainer}>
-      <Text style={styles.textArtistName}>{artistInfo!.name}</Text>
-      <FastImage
-        style={{height: 200, width: '100%'}}
-        source={{
-          uri: artistInfo!.thumbnails[1].url,
-          priority: FastImage.priority.high,
-        }}
-      />
-    </View>
+    <FastImage
+      style={{height: 285, width: '100%'}}
+      source={{
+        uri: artistInfo!.thumbnails[1].url,
+        priority: FastImage.priority.high,
+      }}
+      resizeMode={FastImage.resizeMode.cover}
+    />
   );
 };

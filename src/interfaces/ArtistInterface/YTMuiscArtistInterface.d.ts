@@ -27,7 +27,7 @@ interface Album {
   name: string;
 }
 
-interface Song {
+export interface Song {
   type: 'SONG';
   videoId: string;
   name: string;
