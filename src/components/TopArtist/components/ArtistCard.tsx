@@ -1,22 +1,23 @@
 import RNBounceable from '@freakycoder/react-native-bounceable';
-import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { TopArtistInterface } from '../../../interfaces/TopArtistInterface/TopArtist';
-import { AndroidColors } from '../../../interfaces/colorsInterface/Colors';
-import { ImageColorPalette } from '../../../utils/colors/ColorsFromImg';
+import {TopArtistInterface} from '../../../interfaces/TopArtistInterface/TopArtist';
+import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
+import {ImageColorPalette} from '../../../utils/colors/ColorsFromImg';
 import styles from './../styles/ArtistCard';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../../types/screenStack';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../../../types/screenStack';
+import {useArtistStore} from '../../../store/artistStore/artistStore';
 
 interface PropsArtistCard {
   artistInfo: TopArtistInterface;
 }
 
 export const ArtistCard: React.FC<PropsArtistCard> = ({artistInfo}) => {
+  const {setArtistId} = useArtistStore();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-
   const [colorTaget, setColorTaget] = useState<AndroidColors | null | undefined>(null);
 
   const GetColorImage = async () => {
@@ -28,15 +29,13 @@ export const ArtistCard: React.FC<PropsArtistCard> = ({artistInfo}) => {
     GetColorImage();
   }, []);
 
-
-  const GoToArtistScreen = () => { 
-     navigation.navigate("Artist")    
-   }
+  const GoToArtistScreen = () => {
+    setArtistId(artistInfo.idArtist);
+    navigation.navigate('Artist');
+  };
 
   return (
-    <RNBounceable
-      onPress={GoToArtistScreen}
-      style={[styles.fullContainer]}>
+    <RNBounceable onPress={GoToArtistScreen} style={[styles.fullContainer]}>
       <View
         style={[
           styles.artistContentInfo,
