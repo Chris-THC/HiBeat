@@ -37,7 +37,7 @@ export interface Song {
   thumbnails: Thumbnail[];
 }
 
-interface AlbumSummary {
+export interface AlbumSummary {
   type: 'ALBUM';
   albumId: string;
   playlistId: string;

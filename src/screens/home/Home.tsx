@@ -13,8 +13,8 @@ export const Home = () => {
       <StatusUpBar backgroundColor={colorBase} />
       <ScrollView>
         <TopArtist />
-        {/* <AlbumsResale /> */}
-        {/* <RandomPlayList /> */}
+        <AlbumsResale />
+        <RandomPlayList />
       </ScrollView>
     </View>
   );
