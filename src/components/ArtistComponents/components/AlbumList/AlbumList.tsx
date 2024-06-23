@@ -40,14 +40,14 @@ const AlbumCard: React.FC<AlbumCradProp> = ({album}) => {
       style={[
         styles.playlistCard,
         {
-          backgroundColor: `${!colorTaget ? '#22242a' : colorTaget?.muted}`,
-          borderColor: `${!colorTaget ? '#22242a' : colorTaget?.darkMuted}`,
+          backgroundColor: `${!colorTaget ? '#22242a' : colorTaget?.dominant}`,
+          borderColor: `${!colorTaget ? '#22242a' : colorTaget?.muted}`,
         },
       ]}>
       <FastImage
         style={styles.imageCrad}
         source={{
-          uri: album.thumbnails[1].url,
+          uri: album?.thumbnails?.[1]?.url || album?.thumbnails?.[0]?.url,
           priority: FastImage.priority.high,
         }}
         resizeMode={FastImage.resizeMode.cover}

@@ -20,7 +20,7 @@ const TrackCard: React.FC<PropTrackCard> = ({track}) => {
         <FastImage
           style={styles.image}
           source={{
-            uri: track.thumbnails[1].url,
+            uri: track?.thumbnails?.[1]?.url || track?.thumbnails?.[0]?.url,
             priority: FastImage.priority.high,
           }}
           resizeMode={FastImage.resizeMode.cover}

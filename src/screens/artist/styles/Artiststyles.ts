@@ -33,6 +33,6 @@ export default StyleSheet.create({
     color: '#fff',
     fontWeight: '700',
     marginLeft: 10,
-    marginBottom: 10,
+    marginVertical: 10,
   },
 });

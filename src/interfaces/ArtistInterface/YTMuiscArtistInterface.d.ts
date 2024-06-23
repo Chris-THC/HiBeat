@@ -64,7 +64,7 @@ interface Playlist {
   thumbnails: Thumbnail[];
 }
 
-interface SimilarArtist {
+export interface SimilarArtist {
   artistId: string;
   name: string;
   type: 'ARTIST';

@@ -17,8 +17,11 @@ interface PropsArtistCard {
 
 export const ArtistCard: React.FC<PropsArtistCard> = ({artistInfo}) => {
   const {setArtistId} = useArtistStore();
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const [colorTaget, setColorTaget] = useState<AndroidColors | null | undefined>(null);
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const [colorTaget, setColorTaget] = useState<
+    AndroidColors | null | undefined
+  >(null);
 
   const GetColorImage = async () => {
     const colorImg = await ImageColorPalette(artistInfo.imgCover[1].url);
@@ -50,7 +53,8 @@ export const ArtistCard: React.FC<PropsArtistCard> = ({artistInfo}) => {
         <FastImage
           style={styles.imageArtistCard}
           source={{
-            uri: artistInfo.imgCover[1].url,
+            uri:
+              artistInfo?.imgCover?.[1]?.url || artistInfo?.imgCover?.[0]?.url,
             priority: FastImage.priority.high,
           }}
           resizeMode={FastImage.resizeMode.cover}
