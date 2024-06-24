@@ -1,9 +1,13 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
-import {FlashList} from '@shopify/flash-list';
-import {Song} from '../../../../interfaces/ArtistInterface/YTMuiscArtistInterface';
-import FastImage from 'react-native-fast-image';
 import {Entypo} from '@expo/vector-icons';
+import RNBounceable from '@freakycoder/react-native-bounceable';
+import {FlashList} from '@shopify/flash-list';
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
+import TrackPlayer from 'react-native-track-player';
+import {Song} from '../../../../interfaces/ArtistInterface/YTMuiscArtistInterface';
+import {handlerPlay} from '../../../../services/TrackPlayerService/TrackPlayerEvents';
+import {getStreamingData} from '../../../../services/streaming/StreamingTrack';
 
 interface PropsTrackList {
   topSongs: Song[];
@@ -42,14 +46,33 @@ const TrackCard: React.FC<PropTrackCard> = ({track}) => {
 };
 
 export const TrackList: React.FC<PropsTrackList> = ({topSongs}) => {
+  const playeAllTracks = async () => {
+    const promises = topSongs.map(track => {
+      return getStreamingData(track.videoId);
+    });
+    const streamingDataArray = await Promise.all(promises);
+    await TrackPlayer.setQueue(streamingDataArray);
+    handlerPlay();
+  };
+
   return (
-    <FlashList
-      data={topSongs}
-      numColumns={1}
-      scrollEnabled={true}
-      estimatedItemSize={8}
-      renderItem={({item}) => <TrackCard track={item} />}
-    />
+    <View>
+      <View style={styles.contentSubTitles}>
+        <Text style={styles.subTitleText}>Popular Songs</Text>
+        <RNBounceable
+          onPress={() => playeAllTracks()}
+          style={styles.btnPlayAll}>
+          <Text style={styles.btnPlayAllText}>Play All</Text>
+        </RNBounceable>
+      </View>
+      <FlashList
+        data={topSongs}
+        numColumns={1}
+        scrollEnabled={true}
+        estimatedItemSize={8}
+        renderItem={({item}) => <TrackCard track={item} />}
+      />
+    </View>
   );
 };
 
@@ -90,5 +113,39 @@ const styles = StyleSheet.create({
   actionsContainer: {
     flex: 1, // 20%
     alignItems: 'center',
+  },
+
+  contentSubTitles: {
+    marginHorizontal: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  subTitleText: {
+    fontSize: 28,
+    color: '#fff',
+    fontWeight: '700',
+    marginLeft: 5,
+    marginVertical: 10,
+  },
+
+  btnPlayAll: {
+    height: 40,
+    width: 100,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  btnPlayAllText: {
+    fontSize: 18,
+    fontWeight: '600',
+    textAlign: 'center',
+    color: '#fff',
+    flexShrink: 1,
+    textShadowColor: 'rgba(1, 0, 0, 1)',
+    textShadowOffset: {width: -0.5, height: 1},
+    textShadowRadius: 1,
   },
 });

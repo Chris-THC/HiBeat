@@ -2,13 +2,13 @@
  * @format
  */
 
+import {QueryClientProvider} from '@tanstack/react-query';
 import {AppRegistry} from 'react-native';
+import TrackPlayer from 'react-native-track-player';
 import App from './App';
 import {name as appName} from './app.json';
-import {QueryClientProvider} from '@tanstack/react-query';
+import {PlaybackService} from './src/services/TrackPlayerService/TrackPlayerService.ts';
 import queryClient from './src/services/client/QueryClient.ts';
-// import TrackPlayer from 'react-native-track-player';
-// import {PlaybackService} from './src/services/trackPlayerService/TrackPlayerService';
 
 const HiBeatApp = () => {
   return (
@@ -19,3 +19,4 @@ const HiBeatApp = () => {
 };
 
 AppRegistry.registerComponent(appName, () => HiBeatApp);
+TrackPlayer.registerPlaybackService(() => PlaybackService);

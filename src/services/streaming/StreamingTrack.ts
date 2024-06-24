@@ -1,6 +1,7 @@
 import axios from 'axios';
+import {AddTrack, Track} from 'react-native-track-player';
 
-export const getStreamingData = async (idTrack: string) => {
+export const getStreamingData = async (idTrack: string): Promise<AddTrack> => {
   try {
     let keyId = 'AIzaSyBAETezhkwP0ZWA02RsqT1zu78Fpt0bC_s';
     const url = `https://www.youtube.com/youtubei/v1/player?key=${keyId}`;
@@ -39,8 +40,8 @@ export const getStreamingData = async (idTrack: string) => {
       id: data.videoDetails.videoId,
       url: formattedUrl.url
         ? formattedUrl.url
-        // Corregir esta linea y poner un sonido que se pueda reproducir
-        : require('../../../assets/music/effect.mp3'),
+        : // Corregir esta linea y poner un sonido que se pueda reproducir
+          require('../../../assets/music/effect.mp3'),
       title: data.videoDetails.title,
       artist: data.videoDetails.author,
       artwork:
@@ -50,6 +51,9 @@ export const getStreamingData = async (idTrack: string) => {
     };
   } catch (error) {
     console.error('Error ==> desde la API:', error);
-    return null;
+    return {
+      url: '',
+      artwork: '',
+    };
   }
 };

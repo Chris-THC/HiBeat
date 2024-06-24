@@ -45,7 +45,7 @@ const SimilarArtistCard: React.FC<ArtistListPropsCard> = ({artistInfo}) => {
         style={[
           styles.artistContentInfo,
           {
-            backgroundColor: `${!colorTaget ? '#22242a' : colorTaget?.muted}`,
+            backgroundColor: `${!colorTaget ? '#22242a' : colorTaget?.dominant}`,
           },
         ]}>
         <View style={styles.artistContentInfoContText}>

@@ -56,7 +56,6 @@ export const Artist = () => {
         </View>
 
         <View style={{flex: 1}}>
-          <Text style={styles.subTitleText}>Popular Songs</Text>
           <TrackList topSongs={artistData!.topSongs} />
         </View>
 
