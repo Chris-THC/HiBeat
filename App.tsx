@@ -13,7 +13,6 @@ const App = () => {
   return (
     <View style={styles.appContainer}>
       <Navigation />
-      <ActiveTrackCrad />
     </View>
   );
 };

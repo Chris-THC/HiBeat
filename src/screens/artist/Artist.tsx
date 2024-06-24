@@ -10,6 +10,7 @@ import {useArtistStore} from '../../store/artistStore/artistStore';
 import styles from './styles/Artiststyles';
 import {AlbumList} from '../../components/ArtistComponents/components/AlbumList/AlbumList';
 import {ArtistList} from '../../components/ArtistComponents/components/ArtistList/ArtistList';
+import {ActiveTrackCrad} from '../../components/ActiveTrackCrad/ActiveTrackCrad';
 
 export const Artist = () => {
   const {artistId} = useArtistStore();
@@ -68,18 +69,8 @@ export const Artist = () => {
           <Text style={styles.subTitleText}>Similar Artist</Text>
           <ArtistList similarArtists={artistData!.similarArtists} />
         </View>
-
-        {/* <View>
-          <TouchableOpacity
-            onPress={() => {
-              artistData?.similarArtists.map(info => {
-                console.log(info);
-              });
-            }}>
-            <Text style={styles.subTitleText}>Show More</Text>
-          </TouchableOpacity>
-        </View> */}
       </ScrollView>
+      <ActiveTrackCrad />
     </View>
   );
 };

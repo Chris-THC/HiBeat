@@ -9,18 +9,22 @@ import {
   handlerPlay,
 } from '../../services/TrackPlayerService/TrackPlayerEvents';
 import {isTrackPlaying} from '../../services/TrackPlayerService/TrackPlayerStates';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../../types/screenStack';
+import {coverImageDefault} from '../../utils/assets/Images';
 
 export const ActiveTrackCrad: React.FC = () => {
   const activeTrack = useActiveTrack();
   const isPlaying = isTrackPlaying();
-
-  const coverImageDefault: string =
-    'https://i1.sndcdn.com/avatars-000217612880-mz25t6-t240x240.jpg';
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
     <RNBounceable
       onPress={() => {
-        console.log('Click');
+        // console.log('Click');
+        navigation.navigate('Player');
       }}
       style={styles.container}>
       <View style={styles.imageContainer}>

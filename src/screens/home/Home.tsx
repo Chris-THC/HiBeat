@@ -6,6 +6,7 @@ import {StatusUpBar} from '../../components/StatusBar/StatusUpBar';
 import {TopArtist} from '../../components/TopArtist/views/TopArtist';
 import {colorBase} from '../../enums/AppColors';
 import styles from './styles/HomeSyles';
+import {ActiveTrackCrad} from '../../components/ActiveTrackCrad/ActiveTrackCrad';
 
 export const Home = () => {
   return (
@@ -16,6 +17,7 @@ export const Home = () => {
         {/* <AlbumsResale /> */}
         {/* <RandomPlayList /> */}
       </ScrollView>
+      <ActiveTrackCrad />
     </View>
   );
 };

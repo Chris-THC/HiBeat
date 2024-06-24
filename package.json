@@ -12,6 +12,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
     "@freakycoder/react-native-bounceable": "^1.0.3",
+    "@react-native-community/slider": "^4.5.2",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "@shopify/flash-list": "^1.6.4",

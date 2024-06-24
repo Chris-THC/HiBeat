@@ -1,11 +1,12 @@
-import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {RootStackParamList} from '../types/screenStack';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Home} from '../screens/home/Home';
+import React from 'react';
 import {Album} from '../screens/album/Album';
-import {RandomPlayListStack} from '../screens/randomPlaylist/RandomPlaylistStack';
 import {Artist} from '../screens/artist/Artist';
+import {Home} from '../screens/home/Home';
+import {Player} from '../screens/player/Player';
+import {RandomPlayListStack} from '../screens/randomPlaylist/RandomPlaylistStack';
+import {RootStackParamList} from '../types/screenStack';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -17,6 +18,7 @@ const Navigation = () => {
         <Stack.Screen name="Album" component={Album} />
         <Stack.Screen name="RandomPlaylist" component={RandomPlayListStack} />
         <Stack.Screen name="Artist" component={Artist} />
+        <Stack.Screen name="Player" component={Player} />
       </Stack.Navigator>
     </NavigationContainer>
   );
