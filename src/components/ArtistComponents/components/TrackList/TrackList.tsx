@@ -19,7 +19,7 @@ interface PropTrackCard {
 
 const TrackCard: React.FC<PropTrackCard> = ({track}) => {
   return (
-    <View style={styles.container}>
+    <RNBounceable onPress={() => console.log('play')} style={styles.container}>
       <View style={styles.imageContainer}>
         <FastImage
           style={styles.image}
@@ -38,10 +38,12 @@ const TrackCard: React.FC<PropTrackCard> = ({track}) => {
           {`${track.artist.name}  •  ${track.type}`}
         </Text>
       </View>
-      <View style={styles.actionsContainer}>
+      <RNBounceable
+        onPress={() => console.log('Opciones')}
+        style={styles.actionsContainer}>
         <Entypo name="dots-three-horizontal" size={25} color="#fff" />
-      </View>
-    </View>
+      </RNBounceable>
+    </RNBounceable>
   );
 };
 
@@ -140,9 +142,9 @@ const styles = StyleSheet.create({
 
   btnPlayAllText: {
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: '700',
     textAlign: 'center',
-    color: '#fff',
+    color: '#ccc',
     flexShrink: 1,
     textShadowColor: 'rgba(1, 0, 0, 1)',
     textShadowOffset: {width: -0.5, height: 1},
