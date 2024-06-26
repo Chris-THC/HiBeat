@@ -19,9 +19,7 @@ export const ArtistCard: React.FC<PropsArtistCard> = ({artistInfo}) => {
   const {setArtistId} = useArtistStore();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const [colorTaget, setColorTaget] = useState<
-    AndroidColors | null | undefined
-  >(null);
+  const [colorTaget, setColorTaget] = useState<AndroidColors | null>(null);
 
   const GetColorImage = async () => {
     const colorImg = await ImageColorPalette(artistInfo.imgCover[1].url);

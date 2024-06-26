@@ -41,17 +41,6 @@ export const PlaylistAllItemsList: React.FC<PropRandomPlaylistInfo> = ({
         <View></View>
       </TouchableOpacity>
 
-      {/* <FlatList
-        data={playlist}
-        numColumns={2}
-        columnWrapperStyle={{gap: 8, paddingHorizontal: 5}}
-        contentContainerStyle={{gap: 8, marginTop: 8}}
-        showsHorizontalScrollIndicator={false}
-        renderItem={playlistItem => {
-          return <PlaylistCard playlist={playlistItem.item} />;
-        }}
-      /> */}
-
       <FlashList
         data={playlist}
         numColumns={2}

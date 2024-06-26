@@ -17,13 +17,11 @@ import {coverImageDefault} from '../../utils/assets/Images';
 export const ActiveTrackCrad: React.FC = () => {
   const activeTrack = useActiveTrack();
   const isPlaying = isTrackPlaying();
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation =useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
     <RNBounceable
       onPress={() => {
-        // console.log('Click');
         navigation.navigate('Player');
       }}
       style={styles.container}>
