@@ -2,15 +2,15 @@ import {FontAwesome} from '@expo/vector-icons';
 import RNBounceable from '@freakycoder/react-native-bounceable';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {handlerNextTrack,handlerPause,handlerPlay,handlerPreviousTrack} from '../../../services/TrackPlayerService/TrackPlayerEvents';
-import {isTrackPlaying} from '../../../services/TrackPlayerService/TrackPlayerStates';
+import {
+  handlerNextTrack,
+  handlerPreviousTrack,
+  togglePlayback,
+} from '../../../services/TrackPlayerService/TrackPlayerEvents';
+import {useIsTrackPlaying} from '../../../services/TrackPlayerService/TrackPlayerStates';
 
 export const TrackPlayerControls: React.FC = () => {
-  const isPlaying = isTrackPlaying();
-
-  const StartPlaying = () => {
-    isPlaying === false ? handlerPlay() : handlerPause();
-  };
+  const isPlaying = useIsTrackPlaying();
 
   const NextTrack = () => {
     handlerNextTrack();
@@ -26,7 +26,7 @@ export const TrackPlayerControls: React.FC = () => {
         <FontAwesome name="step-backward" size={35} color="#fff" />
       </RNBounceable>
 
-      <RNBounceable onPress={StartPlaying}>
+      <RNBounceable onPress={togglePlayback}>
         {isPlaying ? (
           <FontAwesome name="pause" size={35} color="#fff" />
         ) : (

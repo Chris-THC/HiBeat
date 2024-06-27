@@ -7,7 +7,6 @@ import TrackPlayer, {
 } from 'react-native-track-player';
 
 interface PropsColors {
-  vibrant: string;
   lightMuted: string;
   mutued: string;
 }
@@ -15,7 +14,6 @@ interface PropsColors {
 export const ProgressAndTrackInfo: React.FC<PropsColors> = ({
   lightMuted,
   mutued,
-  vibrant,
 }) => {
   const activeTrack = useActiveTrack();
   const progress = useProgress();
@@ -35,7 +33,7 @@ export const ProgressAndTrackInfo: React.FC<PropsColors> = ({
         value={progress.position}
         minimumValue={0}
         maximumValue={progress.duration}
-        thumbTintColor={vibrant}
+        thumbTintColor={mutued}
         maximumTrackTintColor={lightMuted}
         minimumTrackTintColor={mutued}
         // thumbTintColor={'#00457d'}

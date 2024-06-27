@@ -1,29 +1,24 @@
 import {FontAwesome} from '@expo/vector-icons';
 import RNBounceable from '@freakycoder/react-native-bounceable';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {useActiveTrack} from 'react-native-track-player';
-import {
-  handlerPause,
-  handlerPlay,
-} from '../../services/TrackPlayerService/TrackPlayerEvents';
-import {isTrackPlaying} from '../../services/TrackPlayerService/TrackPlayerStates';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import TrackPlayer, {State, useActiveTrack} from 'react-native-track-player';
+import {useIsTrackPlaying} from '../../services/TrackPlayerService/TrackPlayerStates';
 import {RootStackParamList} from '../../types/screenStack';
 import {coverImageDefault} from '../../utils/assets/Images';
+import {togglePlayback} from '../../services/TrackPlayerService/TrackPlayerEvents';
 
 export const ActiveTrackCrad: React.FC = () => {
   const activeTrack = useActiveTrack();
-  const isPlaying = isTrackPlaying();
-  const navigation =useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const isPlaying = useIsTrackPlaying();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
     <RNBounceable
-      onPress={() => {
-        navigation.navigate('Player');
-      }}
+      onPress={() => navigation.navigate('Player')}
       style={styles.container}>
       <View style={styles.imageContainer}>
         <FastImage
@@ -42,11 +37,7 @@ export const ActiveTrackCrad: React.FC = () => {
           }`}
         </Text>
       </View>
-      <RNBounceable
-        onPress={() => {
-          isPlaying === false ? handlerPlay() : handlerPause();
-        }}
-        style={styles.actionsContainer}>
+      <RNBounceable onPress={togglePlayback} style={styles.actionsContainer}>
         {isPlaying ? (
           <FontAwesome name="pause" size={25} color="#fff" />
         ) : (

@@ -1,11 +1,20 @@
-import TrackPlayer, {useIsPlaying} from 'react-native-track-player';
+import TrackPlayer, {State, useIsPlaying} from 'react-native-track-player';
 
-export const handlerPlay = async () => {
-  await TrackPlayer.play();
-};
+// export const handlerPlay = async () => {
+//   await TrackPlayer.play();
+// };
 
-export const handlerPause = async () => {
-  await TrackPlayer.pause();
+// export const handlerPause = async () => {
+//   await TrackPlayer.pause();
+// };
+
+export const togglePlayback = async () => {
+  const state = await TrackPlayer.getState();
+  if (state === State.Playing) {
+    await TrackPlayer.pause();
+  } else {
+    await TrackPlayer.play();
+  }
 };
 
 export const handlerSkip = async () => {
