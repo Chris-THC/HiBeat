@@ -1,8 +1,8 @@
 import TrackPlayer, {State, useIsPlaying} from 'react-native-track-player';
 
-// export const handlerPlay = async () => {
-//   await TrackPlayer.play();
-// };
+export const handlerPlay = async () => {
+  await TrackPlayer.play();
+};
 
 // export const handlerPause = async () => {
 //   await TrackPlayer.pause();

@@ -30,16 +30,16 @@ export const PlayerScreen = () => {
   return (
     <LinearGradient
       style={styles.container}
-      colors={[colorCover?.muted || colorBase, colorBase]}>
-      <StatusUpBar backgroundColor={colorCover?.muted || colorBase} />
+      colors={[colorCover?.dominant || colorBase, colorBase]}>
+      <StatusUpBar backgroundColor={colorCover?.dominant || colorBase} />
       <View style={styles.imageContainer}>
         <TrackCover />
       </View>
       <View style={styles.titleProgressContainer}>
         <ProgressAndTrackInfo
           // vibrant={colorCover?.muted || '#00457d'}
-          lightMuted={colorCover?.dominant || '#5361b5'}
-          mutued={colorCover?.lightMuted || '#088bba'}
+          lightMuted={colorCover?.vibrant || '#5361b5'}
+          mutued={colorCover?.vibrant || '#088bba'}
         />
       </View>
       <View style={styles.controlsContainer}>
