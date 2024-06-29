@@ -4,4 +4,5 @@ export type RootStackParamList = {
   RandomPlaylist: undefined;
   Artist: undefined;
   Player: undefined;
+  Search: undefined;
 };

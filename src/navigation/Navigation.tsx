@@ -6,6 +6,7 @@ import {Artist} from '../screens/artist/Artist';
 import {Home} from '../screens/home/Home';
 import {Player} from '../screens/player/Player';
 import {RandomPlayListStack} from '../screens/randomPlaylist/RandomPlaylistStack';
+import {Search} from '../screens/search/Search';
 import {RootStackParamList} from '../types/screenStack';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -19,6 +20,7 @@ const Navigation = () => {
         <Stack.Screen name="RandomPlaylist" component={RandomPlayListStack} />
         <Stack.Screen name="Artist" component={Artist} />
         <Stack.Screen name="Player" component={Player} />
+        <Stack.Screen name="Search" component={Search} />
       </Stack.Navigator>
     </NavigationContainer>
   );
