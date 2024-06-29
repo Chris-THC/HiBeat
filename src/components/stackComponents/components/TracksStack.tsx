@@ -6,6 +6,7 @@ import FastImage from 'react-native-fast-image';
 import TrackPlayer, {Track} from 'react-native-track-player';
 import {handlerPlay} from '../../../services/TrackPlayerService/TrackPlayerEvents';
 import {formatToSeconds} from '../../../utils/time/SecondsToMinutes';
+import {FlashList} from '@shopify/flash-list';
 
 interface PropsTrackList {
   topSongs: Track[];
@@ -65,7 +66,22 @@ export const StackTracks: React.FC<PropsTrackList> = ({topSongs}) => {
         <Text style={styles.subTitleText}>Tracks into the stack</Text>
       </View>
 
-      <ScrollView style={{flex: 1}}>
+      <FlashList
+        data={topSongs}
+        numColumns={1}
+        scrollEnabled={true}
+        estimatedItemSize={40}
+        showsVerticalScrollIndicator={false}
+        renderItem={({item, index}) => (
+          <TrackCard
+            track={item}
+            position={index}
+            onTrackSelect={handleSelectTrack}
+          />
+        )}
+      />
+
+      {/* <ScrollView style={{flex: 1}}>
         {topSongs!.map((track, index) => (
           <TrackCard
             track={track}
@@ -73,7 +89,7 @@ export const StackTracks: React.FC<PropsTrackList> = ({topSongs}) => {
             onTrackSelect={handleSelectTrack}
           />
         ))}
-      </ScrollView>
+      </ScrollView> */}
     </View>
   );
 };

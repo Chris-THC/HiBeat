@@ -104,7 +104,7 @@ export const TrackListSerach: React.FC<PropsTrackList> = ({topSongs}) => {
         data={topSongs}
         numColumns={1}
         scrollEnabled={true}
-        estimatedItemSize={8}
+        estimatedItemSize={40}
         renderItem={({item, index}) => (
           <TrackCard
             track={item}
