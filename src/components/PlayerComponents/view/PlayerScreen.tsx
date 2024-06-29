@@ -37,13 +37,12 @@ export const PlayerScreen = () => {
       </View>
       <View style={styles.titleProgressContainer}>
         <ProgressAndTrackInfo
-          // vibrant={colorCover?.muted || '#00457d'}
-          lightMuted={colorCover?.vibrant || '#5361b5'}
-          mutued={colorCover?.vibrant || '#088bba'}
+          lightMuted={colorCover?.darkVibrant || '#5361b5'}
+          mutued={colorCover?.darkVibrant || '#088bba'}
         />
       </View>
       <View style={styles.controlsContainer}>
-        <TrackPlayerControls />
+        <TrackPlayerControls color={colorCover?.darkVibrant || '#088bba'} />
       </View>
       <View style={styles.actionsContainer}>
         <ActionsAndOptions />
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     height: 'auto',
   },
   imageContainer: {
-    flex: 6,
+    flex: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },

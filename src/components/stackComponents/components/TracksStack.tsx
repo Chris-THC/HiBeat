@@ -1,22 +1,18 @@
 import {Entypo} from '@expo/vector-icons';
 import RNBounceable from '@freakycoder/react-native-bounceable';
-import {FlashList} from '@shopify/flash-list';
-import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import TrackPlayer from 'react-native-track-player';
-import {SongDetailed} from '../../../interfaces/SerachInterface/SearchTracks';
+import TrackPlayer, {Track} from 'react-native-track-player';
 import {handlerPlay} from '../../../services/TrackPlayerService/TrackPlayerEvents';
-import {getStreamingData} from '../../../services/streaming/StreamingTrack';
 import {formatToSeconds} from '../../../utils/time/SecondsToMinutes';
-import {SuggestionsTrackListFuntion} from '../../../hooks/UseSimilarTracks/UseSimilarTracks';
 
 interface PropsTrackList {
-  topSongs: SongDetailed[];
+  topSongs: Track[];
 }
 
 interface PropTrackCard {
-  track: SongDetailed;
+  track: Track;
   position: number;
   onTrackSelect: (position: number) => void;
 }
@@ -34,7 +30,7 @@ const TrackCard: React.FC<PropTrackCard> = ({
         <FastImage
           style={styles.image}
           source={{
-            uri: track?.thumbnails?.[1]?.url || track?.thumbnails?.[0]?.url,
+            uri: track.artwork,
             priority: FastImage.priority.high,
           }}
           resizeMode={FastImage.resizeMode.cover}
@@ -42,10 +38,10 @@ const TrackCard: React.FC<PropTrackCard> = ({
       </View>
       <View style={styles.infoContainer}>
         <Text numberOfLines={1} ellipsizeMode="tail" style={styles.trackName}>
-          {track.name}
+          {track.title}
         </Text>
         <Text style={styles.artistName}>
-          {`${track.artist.name}  •  ${formatToSeconds(track.duration)}`}
+          {`${track.artist}  •  ${formatToSeconds(track.duration!)}`}
         </Text>
       </View>
       <RNBounceable
@@ -57,62 +53,27 @@ const TrackCard: React.FC<PropTrackCard> = ({
   );
 };
 
-export const TrackListSerach: React.FC<PropsTrackList> = ({topSongs}) => {
-  const playeAllTracks = async () => {
-    const promises = topSongs.map(track => {
-      return getStreamingData(track.videoId);
-    });
-    const streamingDataArray = await Promise.all(promises);
-    await TrackPlayer.setQueue(streamingDataArray);
-    handlerPlay();
-  };
-
+export const StackTracks: React.FC<PropsTrackList> = ({topSongs}) => {
   const handleSelectTrack = async (position: number) => {
-    // const promises = topSongs.map(track => {
-    //   return getStreamingData(track.videoId);
-    // });
-    // const streamingDataArray = await Promise.all(promises);
-    // await TrackPlayer.reset();
-    // await TrackPlayer.add(streamingDataArray);
-    // await TrackPlayer.skip(position);
-    // handlerPlay();
-
-    const promise = getStreamingData(topSongs[position].videoId);
-    const trackSelected = await promise;
-    await TrackPlayer.setQueue([trackSelected]);
     await TrackPlayer.skip(position);
     handlerPlay();
-
-    let similarTracks = await SuggestionsTrackListFuntion(topSongs[position].videoId);
-
-    await TrackPlayer.add(similarTracks!);
-  
-    
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{minHeight: '100%'}}>
       <View style={styles.contentSubTitles}>
-        <Text style={styles.subTitleText}>Popular Songs</Text>
-        <RNBounceable
-          onPress={() => playeAllTracks()}
-          style={styles.btnPlayAll}>
-          <Text style={styles.btnPlayAllText}>Play All</Text>
-        </RNBounceable>
+        <Text style={styles.subTitleText}>Tracks into the stack</Text>
       </View>
-      <FlashList
-        data={topSongs}
-        numColumns={1}
-        scrollEnabled={true}
-        estimatedItemSize={8}
-        renderItem={({item, index}) => (
+
+      <ScrollView style={{flex: 1}}>
+        {topSongs!.map((track, index) => (
           <TrackCard
-            track={item}
+            track={track}
             position={index}
             onTrackSelect={handleSelectTrack}
           />
-        )}
-      />
+        ))}
+      </ScrollView>
     </View>
   );
 };

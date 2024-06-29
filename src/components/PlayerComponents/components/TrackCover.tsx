@@ -22,8 +22,8 @@ export const TrackCover: React.FC = () => {
 
 const styles = StyleSheet.create({
   imgStyles: {
-    height: 390,
-    width: 390,
+    height: 370,
+    width: 370,
     borderRadius: 10,
   },
 });

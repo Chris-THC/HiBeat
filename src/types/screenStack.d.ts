@@ -5,4 +5,5 @@ export type RootStackParamList = {
   Artist: undefined;
   Player: undefined;
   Search: undefined;
+  StackPlayer: undefined;
 };

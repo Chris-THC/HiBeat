@@ -9,7 +9,11 @@ import {
 } from '../../../services/TrackPlayerService/TrackPlayerEvents';
 import {useIsTrackPlaying} from '../../../services/TrackPlayerService/TrackPlayerStates';
 
-export const TrackPlayerControls: React.FC = () => {
+interface ColorProp {
+  color: string;
+}
+
+export const TrackPlayerControls: React.FC<ColorProp> = ({color}) => {
   const isPlaying = useIsTrackPlaying();
 
   const NextTrack = () => {
@@ -22,20 +26,22 @@ export const TrackPlayerControls: React.FC = () => {
 
   return (
     <View style={styles.controlsContainer}>
-      <RNBounceable onPress={PreviousTrack}>
-        <FontAwesome name="step-backward" size={35} color="#fff" />
+      <RNBounceable style={styles.btnNextNPrev} onPress={PreviousTrack}>
+        <FontAwesome name="step-backward" size={25} color="#fff" />
       </RNBounceable>
 
-      <RNBounceable onPress={togglePlayback}>
+      <RNBounceable
+        style={[styles.btnPlayNPause, {backgroundColor: color}]}
+        onPress={togglePlayback}>
         {isPlaying ? (
-          <FontAwesome name="pause" size={35} color="#fff" />
+          <FontAwesome name="pause" size={25} color={'#fff'} />
         ) : (
-          <FontAwesome name="play" size={35} color="#fff" />
+          <FontAwesome name="play" size={25} color={'#fff'} />
         )}
       </RNBounceable>
 
-      <RNBounceable onPress={NextTrack}>
-        <FontAwesome name="step-forward" size={35} color="#fff" />
+      <RNBounceable style={styles.btnNextNPrev} onPress={NextTrack}>
+        <FontAwesome name="step-forward" size={25} color="#fff" />
       </RNBounceable>
     </View>
   );
@@ -48,5 +54,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     width: '80%',
     height: 50,
+  },
+  btnNextNPrev: {
+    width: 45,
+    height: 45,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  btnPlayNPause: {
+    width: 48,
+    height: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+    borderRadius: 50,
   },
 });
