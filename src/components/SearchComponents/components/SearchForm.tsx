@@ -1,8 +1,9 @@
+import RNBounceable from '@freakycoder/react-native-bounceable';
 import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
-import {Button, StyleSheet, TextInput, View} from 'react-native';
-import {useSearchStore} from '../../../store/searchStore/SearchStore';
+import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {serachTracksFuntion} from '../../../hooks/UseSearch/UseSearchTracks';
+import {useSearchStore} from '../../../store/searchStore/SearchStore';
 
 type FormData = {
   search: string;
@@ -24,16 +25,21 @@ export const SearchForm: React.FC = () => {
         name="search"
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
+            returnKeyType="search"
             style={styles.input}
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
             placeholder="Buscar"
             placeholderTextColor="#888"
+            onSubmitEditing={handleSubmit(onSubmit)}
           />
         )}
       />
-      <Button title="Buscar" onPress={handleSubmit(onSubmit)} color="#FF0000" />
+
+      <RNBounceable style={styles.btnContent} onPress={handleSubmit(onSubmit)}>
+        <Text style={styles.textBtn}>Search</Text>
+      </RNBounceable>
     </View>
   );
 };
@@ -42,17 +48,26 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
-    backgroundColor: '#121212',
+    backgroundColor: '#212121',
+    borderRadius: 15,
+    paddingHorizontal: 5,
+    margin: 5,
   },
   input: {
     flex: 1,
-    height: 40,
-    borderColor: '#888',
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
+    fontSize: 16,
     color: '#fff',
-    marginRight: 10,
+    fontFamily: 'Gilroy-Bold',
+    marginHorizontal: 5,
+  },
+  textBtn: {
+    fontSize: 16,
+    color: '#ccc',
+  },
+  btnContent: {
+    height: 45,
+    width: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

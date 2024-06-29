@@ -8,6 +8,7 @@ import TrackPlayer from 'react-native-track-player';
 import {SongDetailed} from '../../../interfaces/SerachInterface/SearchTracks';
 import {getStreamingData} from '../../../services/streaming/StreamingTrack';
 import {handlerPlay} from '../../../services/TrackPlayerService/TrackPlayerEvents';
+import {formatToSeconds} from '../../../utils/time/SecondsToMinutes';
 
 interface PropsTrackList {
   topSongs: SongDetailed[];
@@ -40,7 +41,7 @@ const TrackCard: React.FC<PropTrackCard> = ({track, position}) => {
           {track.name}
         </Text>
         <Text style={styles.artistName}>
-          {`${track.artist.name}  •  ${track.type}`}
+          {`${track.artist.name}  •  ${formatToSeconds(track.duration)}`}
         </Text>
       </View>
       <RNBounceable
@@ -132,9 +133,9 @@ const styles = StyleSheet.create({
   },
 
   subTitleText: {
-    fontSize: 28,
+    fontSize: 22,
     color: '#fff',
-    fontWeight: '700',
+    fontWeight: '600',
     marginLeft: 5,
     marginVertical: 10,
   },

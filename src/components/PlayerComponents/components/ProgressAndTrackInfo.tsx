@@ -5,6 +5,7 @@ import TrackPlayer, {
   useActiveTrack,
   useProgress,
 } from 'react-native-track-player';
+import {formatToSeconds} from '../../../utils/time/SecondsToMinutes';
 
 interface PropsColors {
   lightMuted: string;
@@ -17,14 +18,6 @@ export const ProgressAndTrackInfo: React.FC<PropsColors> = ({
 }) => {
   const activeTrack = useActiveTrack();
   const progress = useProgress();
-
-  const formatToSeconds = (seconds: number): string => {
-    let mins = Math.floor(seconds / 60)
-      .toString()
-      .padStart(2, '0');
-    let secs = (Math.trunc(seconds) % 60).toString().padStart(2, '0');
-    return `${mins}:${secs}`;
-  };
 
   return (
     <View>
