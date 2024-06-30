@@ -8,6 +8,7 @@ import TrackPlayer from 'react-native-track-player';
 import {Song} from '../../../../interfaces/ArtistInterface/YTMuiscArtistInterface';
 import {handlerPlay} from '../../../../services/TrackPlayerService/TrackPlayerEvents';
 import {getStreamingData} from '../../../../services/streaming/StreamingTrack';
+import {SuggestionsTrackListFuntion} from '../../../../hooks/UseSimilarTracks/UseSimilarTracks';
 
 interface PropsTrackList {
   topSongs: Song[];
@@ -15,11 +16,19 @@ interface PropsTrackList {
 
 interface PropTrackCard {
   track: Song;
+  position: number;
+  onTrackSelect: (position: number) => void;
 }
 
-const TrackCard: React.FC<PropTrackCard> = ({track}) => {
+const TrackCard: React.FC<PropTrackCard> = ({
+  track,
+  position,
+  onTrackSelect,
+}) => {
   return (
-    <RNBounceable onPress={() => console.log('play')} style={styles.container}>
+    <RNBounceable
+      onPress={() => onTrackSelect(position)}
+      style={styles.container}>
       <View style={styles.imageContainer}>
         <FastImage
           style={styles.image}
@@ -34,9 +43,7 @@ const TrackCard: React.FC<PropTrackCard> = ({track}) => {
         <Text numberOfLines={1} ellipsizeMode="tail" style={styles.trackName}>
           {track.name}
         </Text>
-        <Text style={styles.artistName}>
-          {`${track.artist.name}  •  ${track.type}`}
-        </Text>
+        <Text style={styles.artistName}>{track.artist.name}</Text>
       </View>
       <RNBounceable
         onPress={() => console.log('Opciones')}
@@ -57,8 +64,22 @@ export const TrackList: React.FC<PropsTrackList> = ({topSongs}) => {
     handlerPlay();
   };
 
+  const handleSelectTrack = async (position: number) => {
+    const promise = getStreamingData(topSongs[position].videoId);
+    const trackSelected = await promise;
+    await TrackPlayer.setQueue([trackSelected]);
+    await TrackPlayer.skip(position);
+    handlerPlay();
+
+    let similarTracks = await SuggestionsTrackListFuntion(
+      topSongs[position].videoId,
+    );
+
+    await TrackPlayer.add(similarTracks!);
+  };
+
   return (
-    <View>
+    <View style={{minHeight: 400}}>
       <View style={styles.contentSubTitles}>
         <Text style={styles.subTitleText}>Popular Songs</Text>
         <RNBounceable
@@ -71,8 +92,14 @@ export const TrackList: React.FC<PropsTrackList> = ({topSongs}) => {
         data={topSongs}
         numColumns={1}
         scrollEnabled={true}
-        estimatedItemSize={8}
-        renderItem={({item}) => <TrackCard track={item} />}
+        estimatedItemSize={20}
+        renderItem={({item, index}) => (
+          <TrackCard
+            track={item}
+            position={index}
+            onTrackSelect={handleSelectTrack}
+          />
+        )}
       />
     </View>
   );
@@ -92,8 +119,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    height: 60,
-    width: 60,
+    height: 50,
+    width: 50,
     borderRadius: 8,
   },
   infoContainer: {
@@ -104,12 +131,12 @@ const styles = StyleSheet.create({
   },
   trackName: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   artistName: {
     color: '#ccc',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '500',
   },
   actionsContainer: {
@@ -126,7 +153,7 @@ const styles = StyleSheet.create({
 
   subTitleText: {
     fontSize: 28,
-    color: '#fff',
+    color: '#E9EFFF',
     fontWeight: '700',
     marginLeft: 5,
     marginVertical: 10,
@@ -144,7 +171,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     textAlign: 'center',
-    color: '#ccc',
+    color: '#7791e4',
     flexShrink: 1,
     textShadowColor: 'rgba(1, 0, 0, 1)',
     textShadowOffset: {width: -0.5, height: 1},

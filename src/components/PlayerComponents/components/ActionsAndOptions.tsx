@@ -1,4 +1,4 @@
-import {MaterialIcons, SimpleLineIcons} from '@expo/vector-icons';
+import {MaterialIcons, SimpleLineIcons, Fontisto} from '@expo/vector-icons';
 import RNBounceable from '@freakycoder/react-native-bounceable';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -29,11 +29,11 @@ export const ActionsAndOptions: React.FC = () => {
 
   return (
     <View style={styles.optionsContainer}>
-      <RNBounceable onPress={() => GotoStack()} style={styles.queueBotton}>
-        <MaterialIcons name="queue-music" size={40} color="#fff" />
+      <RNBounceable style={styles.queueBotton} onPress={() => GotoStack()}>
+        <MaterialIcons name="queue-music" size={38} color="#fff" />
       </RNBounceable>
-      <RNBounceable>
-        <SimpleLineIcons name="options-vertical" size={30} color="#fff" />
+      <RNBounceable style={styles.moreAcctions}>
+        <Fontisto name="more-v" size={25} color="#fff" />
       </RNBounceable>
     </View>
   );
@@ -45,11 +45,20 @@ const styles = StyleSheet.create({
     width: '95%',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    height: 50,
+    height: 55,
   },
   queueBotton: {
     width: 40,
     height: 40,
-    marginHorizontal: 10,
+    marginHorizontal: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  moreAcctions: {
+    width: 40,
+    height: 40,
+    marginHorizontal: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

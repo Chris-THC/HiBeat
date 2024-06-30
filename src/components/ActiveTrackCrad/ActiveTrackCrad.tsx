@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    height: 55,
-    width: 55,
+    height: 50,
+    width: 50,
     borderRadius: 8,
   },
   infoContainer: {

@@ -66,14 +66,16 @@ const AlbumCard: React.FC<AlbumCradProp> = ({album}) => {
 
 export const AlbumList: React.FC<AlbumListProps> = ({topAlbums}) => {
   return (
-    <FlashList
-      data={topAlbums}
-      numColumns={1}
-      horizontal={true}
-      scrollEnabled={true}
-      estimatedItemSize={10}
-      showsVerticalScrollIndicator={false}
-      renderItem={({item}) => <AlbumCard album={item} />}
-    />
+    <View style={{minHeight: 250, width: 'auto'}}>
+      <FlashList
+        data={topAlbums}
+        numColumns={1}
+        horizontal={true}
+        scrollEnabled={true}
+        estimatedItemSize={10}
+        showsVerticalScrollIndicator={false}
+        renderItem={({item}) => <AlbumCard album={item} />}
+      />
+    </View>
   );
 };

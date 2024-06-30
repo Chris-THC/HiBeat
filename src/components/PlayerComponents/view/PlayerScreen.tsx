@@ -37,7 +37,7 @@ export const PlayerScreen = () => {
       </View>
       <View style={styles.titleProgressContainer}>
         <ProgressAndTrackInfo
-          lightMuted={colorCover?.lightMuted || '#5361b5'}
+          lightMuted={colorCover?.vibrant || '#5361b5'}
           mutued={colorCover?.vibrant || '#088bba'}
         />
       </View>

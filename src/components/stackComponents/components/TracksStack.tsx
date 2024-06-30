@@ -41,8 +41,8 @@ const TrackCard: React.FC<PropTrackCard> = ({
         <Text numberOfLines={1} ellipsizeMode="tail" style={styles.trackName}>
           {track.title}
         </Text>
-        <Text style={styles.artistName}>
-          {`${track.artist}  •  ${formatToSeconds(track.duration!)}`}
+        <Text numberOfLines={1} ellipsizeMode="tail" style={styles.artistName}>
+          {track.artist}
         </Text>
       </View>
       <RNBounceable
@@ -80,16 +80,6 @@ export const StackTracks: React.FC<PropsTrackList> = ({topSongs}) => {
           />
         )}
       />
-
-      {/* <ScrollView style={{flex: 1}}>
-        {topSongs!.map((track, index) => (
-          <TrackCard
-            track={track}
-            position={index}
-            onTrackSelect={handleSelectTrack}
-          />
-        ))}
-      </ScrollView> */}
     </View>
   );
 };
@@ -108,8 +98,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    height: 60,
-    width: 60,
+    height: 50,
+    width: 50,
     borderRadius: 8,
   },
   infoContainer: {
@@ -120,12 +110,12 @@ const styles = StyleSheet.create({
   },
   trackName: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   artistName: {
     color: '#ccc',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '500',
   },
   actionsContainer: {

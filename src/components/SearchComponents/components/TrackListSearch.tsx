@@ -21,11 +21,7 @@ interface PropTrackCard {
   onTrackSelect: (position: number) => void;
 }
 
-const TrackCard: React.FC<PropTrackCard> = ({
-  track,
-  position,
-  onTrackSelect,
-}) => {
+const TrackCard: React.FC<PropTrackCard> = ({track,position,onTrackSelect}) => {
   return (
     <RNBounceable
       onPress={() => onTrackSelect(position)}
@@ -68,26 +64,17 @@ export const TrackListSerach: React.FC<PropsTrackList> = ({topSongs}) => {
   };
 
   const handleSelectTrack = async (position: number) => {
-    // const promises = topSongs.map(track => {
-    //   return getStreamingData(track.videoId);
-    // });
-    // const streamingDataArray = await Promise.all(promises);
-    // await TrackPlayer.reset();
-    // await TrackPlayer.add(streamingDataArray);
-    // await TrackPlayer.skip(position);
-    // handlerPlay();
-
     const promise = getStreamingData(topSongs[position].videoId);
     const trackSelected = await promise;
     await TrackPlayer.setQueue([trackSelected]);
     await TrackPlayer.skip(position);
     handlerPlay();
 
-    let similarTracks = await SuggestionsTrackListFuntion(topSongs[position].videoId);
+    let similarTracks = await SuggestionsTrackListFuntion(
+      topSongs[position].videoId,
+    );
 
     await TrackPlayer.add(similarTracks!);
-  
-    
   };
 
   return (
@@ -104,7 +91,7 @@ export const TrackListSerach: React.FC<PropsTrackList> = ({topSongs}) => {
         data={topSongs}
         numColumns={1}
         scrollEnabled={true}
-        estimatedItemSize={40}
+        estimatedItemSize={50}
         renderItem={({item, index}) => (
           <TrackCard
             track={item}
@@ -131,8 +118,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    height: 60,
-    width: 60,
+    height: 50,
+    width: 50,
     borderRadius: 8,
   },
   infoContainer: {
@@ -143,12 +130,12 @@ const styles = StyleSheet.create({
   },
   trackName: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   artistName: {
     color: '#ccc',
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: '500',
   },
   actionsContainer: {
@@ -165,7 +152,7 @@ const styles = StyleSheet.create({
 
   subTitleText: {
     fontSize: 22,
-    color: '#fff',
+    color: '#E9EFFF',
     fontWeight: '600',
     marginLeft: 5,
     marginVertical: 10,
@@ -183,7 +170,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     textAlign: 'center',
-    color: '#ccc',
+    color: '#7791e4',
     flexShrink: 1,
     textShadowColor: 'rgba(1, 0, 0, 1)',
     textShadowOffset: {width: -0.5, height: 1},

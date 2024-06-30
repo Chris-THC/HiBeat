@@ -7,6 +7,9 @@ export default StyleSheet.create({
     flex: 1,
     margin: 0,
     padding: 0,
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
   },
   gradient: {
     ...StyleSheet.absoluteFillObject,
@@ -20,13 +23,13 @@ export default StyleSheet.create({
     padding: 20,
   },
   artistNameText: {
-    fontSize: 45,
+    fontSize: 35,
     fontWeight: 'bold',
     color: '#fff',
     flexShrink: 1,
     textShadowColor: 'rgba(1, 0, 0, 1)',
     textShadowOffset: {width: -1, height: 1},
-    textShadowRadius: 2,
+    textShadowRadius: 15,
   },
   subTitleText: {
     fontSize: 28,

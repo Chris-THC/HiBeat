@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    width: '80%',
-    height: 50,
+    width: '70%',
+    height: 60,
   },
   btnNextNPrev: {
     width: 45,
@@ -62,12 +62,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  // btnPlayNPause: {
+  //   width: 55,
+  //   height: 55,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   alignContent: 'center',
+  //   borderRadius: 50,
+  // },
   btnPlayNPause: {
-    width: 48,
-    height: 48,
+    width: 55,
+    height: 55,
     justifyContent: 'center',
     alignItems: 'center',
-    alignContent: 'center',
     borderRadius: 50,
+    shadowColor: '#000', // Color de la sombra
+    shadowOffset: {width: 2, height: 3}, // Desplazamiento de la sombra
+    shadowOpacity: 1, // Opacidad de la sombra
+    shadowRadius: 20, // Radio de la sombra
+    elevation: 4, // Elevación (para Android)
   },
 });
