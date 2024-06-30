@@ -4,6 +4,7 @@ import {Text, View} from 'react-native';
 import {useTopArtistGlobal} from '../../../hooks/UseTopArtist/UseTopArtist';
 import {ArtistCard} from '../components/ArtistCard';
 import styles from '../styles/TopArtistSryles';
+import {TopArtistLoader} from '../../../utils/skeleton/loaders/TopArtist/TopArtisLoader';
 
 export const TopArtist = () => {
   const {data: Top10, isLoading: isLoadingTop10} = useTopArtistGlobal();
@@ -11,7 +12,7 @@ export const TopArtist = () => {
   if (isLoadingTop10) {
     return (
       <View>
-        <Text>Loading</Text>
+        <TopArtistLoader />
       </View>
     );
   }

@@ -8,6 +8,7 @@ import {PlaylistCard} from '../components/PlaylistCard';
 import {FontAwesome6} from '@expo/vector-icons';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import {useRandomPlaylistStore} from '../../../store/randomPlatlistStore/randomPlaylistStore';
+import {PlayListLoader} from '../../../utils/skeleton/loaders/PlayListLoader/PlayListLoader';
 
 export const RandomPlayList = () => {
   const {isLoading, data: albumsArray} = useRandomPlaylist();
@@ -23,7 +24,7 @@ export const RandomPlayList = () => {
   if (isLoading) {
     return (
       <View>
-        <Text>Cargando...</Text>
+        <PlayListLoader />
       </View>
     );
   }

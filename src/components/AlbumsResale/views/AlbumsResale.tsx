@@ -4,12 +4,13 @@ import {useAlbumRelase} from '../../../hooks/UseAlbumsRelase/UseAlbumRelase';
 import {AlbumRelaseCrad} from '../components/AlbumRelaseCrad';
 import styles from '../styles/AlbResale';
 import {FontAwesome6} from '@expo/vector-icons';
+import {RecientlyAlbumLoader} from '../../../utils/skeleton/loaders/RecientlyAlbums/RecientlyAudioLoader';
 
 export const AlbumsResale = () => {
   const {isLoading: loadAlbum, data: albumsRelase} = useAlbumRelase();
 
   if (loadAlbum) {
-    return <Text style={{color: '#fff'}}>Cargando albums...</Text>;
+    return <RecientlyAlbumLoader />;
   }
 
   return (
