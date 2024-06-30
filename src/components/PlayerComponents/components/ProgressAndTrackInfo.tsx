@@ -6,6 +6,7 @@ import TrackPlayer, {
   useProgress,
 } from 'react-native-track-player';
 import {formatToSeconds} from '../../../utils/time/SecondsToMinutes';
+import TextTicker from 'react-native-text-ticker';
 
 interface PropsColors {
   lightMuted: string;
@@ -29,9 +30,6 @@ export const ProgressAndTrackInfo: React.FC<PropsColors> = ({
         thumbTintColor={mutued}
         maximumTrackTintColor={lightMuted}
         minimumTrackTintColor={mutued}
-        // thumbTintColor={'#00457d'}
-        // maximumTrackTintColor={'#5361b5'}
-        // minimumTrackTintColor={'#208ed8'}
         onSlidingComplete={async (time: number) => {
           await TrackPlayer.seekTo(Math.round(time));
         }}
@@ -46,13 +44,26 @@ export const ProgressAndTrackInfo: React.FC<PropsColors> = ({
         </Text>
       </View>
 
-      <View>
-        <Text numberOfLines={1} ellipsizeMode="tail" style={styles.artistName}>
+      <View style={styles.containerText}>
+        <TextTicker
+          style={styles.artistName}
+          duration={10000}
+          loop
+          bounce={true}
+          repeatSpacer={80}
+          marqueeDelay={30}>
           {activeTrack?.title || 'Waiting a new track'}
-        </Text>
-        <Text numberOfLines={1} ellipsizeMode="tail" style={styles.titleTrack}>
+        </TextTicker>
+
+        <TextTicker
+          style={styles.titleTrack}
+          duration={10000}
+          loop
+          bounce={true}
+          repeatSpacer={80}
+          marqueeDelay={30}>
           {activeTrack?.artist || 'Waiting a new track'}
-        </Text>
+        </TextTicker>
       </View>
     </View>
   );
@@ -77,6 +88,11 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   // text trackInfo
+
+  containerText: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   artistName: {
     fontSize: 24,
     color: '#fff',

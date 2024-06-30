@@ -1,11 +1,12 @@
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {FontAwesome} from '@expo/vector-icons';
 import RNBounceable from '@freakycoder/react-native-bounceable';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import FastImage from 'react-native-fast-image';
-import TrackPlayer, {State, useActiveTrack} from 'react-native-track-player';
+import TextTicker from 'react-native-text-ticker';
+import {useActiveTrack} from 'react-native-track-player';
 import {useIsTrackPlaying} from '../../services/TrackPlayerService/TrackPlayerStates';
 import {RootStackParamList} from '../../types/screenStack';
 import {coverImageDefault} from '../../utils/assets/Images';
@@ -14,7 +15,8 @@ import {togglePlayback} from '../../services/TrackPlayerService/TrackPlayerEvent
 export const ActiveTrackCrad: React.FC = () => {
   const activeTrack = useActiveTrack();
   const isPlaying = useIsTrackPlaying();
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
     <RNBounceable
@@ -31,17 +33,23 @@ export const ActiveTrackCrad: React.FC = () => {
         />
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.artistName}>
+        <TextTicker
+          style={styles.artistName}
+          duration={9000}
+          loop
+          bounce={true}
+          repeatSpacer={40}
+          marqueeDelay={30}>
           {`${activeTrack?.title || 'Waiting a new track'}  •  ${
             activeTrack?.artist || 'Waiting Artist'
           }`}
-        </Text>
+        </TextTicker>
       </View>
       <RNBounceable onPress={togglePlayback} style={styles.actionsContainer}>
         {isPlaying ? (
-          <FontAwesome name="pause" size={25} color="#fff" />
+          <FontAwesome name="pause" size={22} color="#fff" />
         ) : (
-          <FontAwesome name="play" size={25} color="#fff" />
+          <FontAwesome name="play" size={22} color="#fff" />
         )}
       </RNBounceable>
     </RNBounceable>
@@ -79,7 +87,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   infoContainer: {
-    flex: 4, //40%
+    flex: 4, // 40%
     justifyContent: 'center',
     marginLeft: 10,
     height: '100%',
@@ -95,7 +103,11 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   actionsContainer: {
-    flex: 1, // 20%
+    flex: 2 / 3,
     alignItems: 'center',
+    height: 45,
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginRight: 5,
   },
 });
