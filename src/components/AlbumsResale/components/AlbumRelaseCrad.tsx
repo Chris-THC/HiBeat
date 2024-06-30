@@ -1,10 +1,10 @@
 import RNBounceable from '@freakycoder/react-native-bounceable';
-import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Text} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { AlbumRelaseInterface } from '../../../interfaces/AlbumsRelase/AlbumsRelase';
-import { AndroidColors } from '../../../interfaces/colorsInterface/Colors';
-import { ImageColorPalette } from '../../../utils/colors/ColorsFromImg';
+import {AlbumRelaseInterface} from '../../../interfaces/AlbumsRelase/AlbumsRelase';
+import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
+import {ImageColorPalette} from '../../../utils/colors/ColorsFromImg';
 import styles from '../styles/AlbReleasedCrad';
 
 interface ArtistCard {
@@ -12,7 +12,9 @@ interface ArtistCard {
 }
 
 export const AlbumRelaseCrad: React.FC<ArtistCard> = ({albumRealseInfo}) => {
-  const [colorTaget, setColorTaget] = useState<AndroidColors | null | undefined>(null);
+  const [colorTaget, setColorTaget] = useState<
+    AndroidColors | null | undefined
+  >(null);
 
   const GetColorImage = async () => {
     const colorImg = await ImageColorPalette(albumRealseInfo.artwork);

@@ -32,7 +32,7 @@ export const ArtistCard: React.FC<PropsArtistCard> = ({artistInfo}) => {
 
   const GoToArtistScreen = () => {
     setArtistId(artistInfo.idArtist);
-    navigation.navigate('Artist');
+    navigation.navigate('ArtistScren');
   };
 
   return (

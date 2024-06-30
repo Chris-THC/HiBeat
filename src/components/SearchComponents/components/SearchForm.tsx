@@ -2,7 +2,11 @@ import RNBounceable from '@freakycoder/react-native-bounceable';
 import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
-import {serachArtistFuntion, serachTracksFuntion} from '../../../hooks/UseSearch/UseSearchTracks';
+import {
+  serachAlbumsFuntion,
+  serachArtistFuntion,
+  serachTracksFuntion,
+} from '../../../hooks/UseSearch/UseSearchTracks';
 import {useSearchStore} from '../../../store/searchStore/SearchStore';
 
 type FormData = {
@@ -11,13 +15,22 @@ type FormData = {
 
 export const SearchForm: React.FC = () => {
   const {control, handleSubmit} = useForm<FormData>();
-  const {setTrackList, setArtistList} = useSearchStore();
+  const {setTrackList, setArtistList, setAlbumsList} = useSearchStore();
 
   const onSubmit = async (data: FormData) => {
-    // const tarcksInfo = await serachTracksFuntion(data.search);
-    // setTrackList(tarcksInfo);
-     const artistInfo = await serachArtistFuntion(data.search);
-     setArtistList(artistInfo);
+    try {
+      const [tracksInfo, artistInfo, albumsInfo] = await Promise.all([
+        serachTracksFuntion(data.search),
+        serachArtistFuntion(data.search),
+        serachAlbumsFuntion(data.search),
+      ]);
+
+      setTrackList(tracksInfo);
+      setArtistList(artistInfo);
+      setAlbumsList(albumsInfo);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
   return (

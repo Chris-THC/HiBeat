@@ -11,7 +11,7 @@ export const TopTabNavigator = () => {
     <Tab.Navigator
       screenOptions={{
         tabBarLabelStyle: {fontSize: 12, color: '#fff'},
-        // tabBarItemStyle: {width: 100},
+
         tabBarStyle: {backgroundColor: colorBase, flex: 1},
       }}>
       <Tab.Screen name="Tracks" component={TrackSearch} />

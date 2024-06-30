@@ -36,7 +36,7 @@ const SimilarArtistCard: React.FC<ArtistListPropsCard> = ({artistInfo}) => {
 
   const GoToArtistScreen = () => {
     setArtistId(artistInfo.artistId);
-    navigation.navigate('Artist');
+    navigation.navigate('ArtistScren');
   };
 
   return (

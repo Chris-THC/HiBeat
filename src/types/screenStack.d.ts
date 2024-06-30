@@ -2,7 +2,7 @@ export type RootStackParamList = {
   Home: undefined;
   Album: undefined;
   RandomPlaylist: undefined;
-  Artist: undefined;
+  ArtistScren: undefined;
   Player: undefined;
   Search: undefined;
   StackPlayer: undefined;
