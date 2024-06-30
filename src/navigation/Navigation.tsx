@@ -1,14 +1,14 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import {Album} from '../screens/album/Album';
-import {Artist} from '../screens/artist/Artist';
-import {Home} from '../screens/home/Home';
-import {Player} from '../screens/player/Player';
-import {RandomPlayListStack} from '../screens/randomPlaylist/RandomPlaylistStack';
-import {Search} from '../screens/search/Search';
-import {StackPlayer} from '../screens/stack/StackPlayer';
-import {RootStackParamList} from '../types/screenStack';
+import { Album } from '../screens/album/Album';
+import { Artist } from '../screens/artist/Artist';
+import { Home } from '../screens/home/Home';
+import { Player } from '../screens/player/Player';
+import { RandomPlayListStack } from '../screens/randomPlaylist/RandomPlaylistStack';
+import { Search } from '../screens/search/Search';
+import { StackPlayer } from '../screens/stack/StackPlayer';
+import { RootStackParamList } from '../types/screenStack';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
