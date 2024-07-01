@@ -34,9 +34,7 @@ export const PlaylistAllItemsList: React.FC<PropRandomPlaylistInfo> = ({
           </Text>
         </View>
         <View>
-          <Text style={styles.randomPlaylistMainTitle}>
-            Some random playlist
-          </Text>
+          <Text style={styles.randomPlaylistMainTitle}>Random Playlist</Text>
         </View>
         <View></View>
       </TouchableOpacity>

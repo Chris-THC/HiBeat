@@ -1,16 +1,16 @@
 import RNBounceable from '@freakycoder/react-native-bounceable';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { FlashList } from '@shopify/flash-list';
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {FlashList} from '@shopify/flash-list';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { colorBase } from '../../../enums/AppColors';
-import { AlbumDetailed } from '../../../interfaces/SerachInterface/AlbumDetails';
-import { AndroidColors } from '../../../interfaces/colorsInterface/Colors';
-import { useArtistStore } from '../../../store/artistStore/artistStore';
-import { RootStackParamList } from '../../../types/screenStack';
-import { ImageColorPalette } from '../../../utils/colors/ColorsFromImg';
+import {colorBase} from '../../../enums/AppColors';
+import {AlbumDetailed} from '../../../interfaces/SerachInterface/AlbumDetails';
+import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
+import {useArtistStore} from '../../../store/artistStore/artistStore';
+import {RootStackParamList} from '../../../types/screenStack';
+import {ImageColorPalette} from '../../../utils/colors/ColorsFromImg';
 
 interface PropArtist {
   albumArray: AlbumDetailed[];
@@ -111,17 +111,17 @@ const styles = StyleSheet.create({
     flex: 3,
   },
   imgCrad: {
-    height: 100,
-    width: 100,
+    height: 105,
+    width: 105,
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
   },
   contentText: {
     flex: 6,
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignContent: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    // alignContent: 'center',
     color: '#fff',
   },
 
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     textShadowColor: 'rgba(1, 0, 0, 1)',
     textShadowOffset: {width: -0.5, height: 1},
-    textShadowRadius: 8,
+    textShadowRadius: 3,
   },
   yearText: {
     fontSize: 15,
@@ -158,6 +158,6 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     textShadowColor: 'rgba(1, 0, 0, 1)',
     textShadowOffset: {width: -0.5, height: 1},
-    textShadowRadius: 10,
+    textShadowRadius: 3,
   },
 });

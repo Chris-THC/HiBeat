@@ -9,11 +9,9 @@ import {TopTabNavigator} from '../../navigation/TopTabNavigaatot';
 export const Search = () => {
   return (
     <View style={styles.container}>
-      <ScrollView style={{backgroundColor: colorBase}}>
-        <StatusUpBar backgroundColor={colorBase} />
-        <SearchForm />
-        <TopTabNavigator />
-      </ScrollView>
+      <StatusUpBar backgroundColor={colorBase} />
+      <SearchForm />
+      <TopTabNavigator /> 
       <ActiveTrackCrad />
     </View>
   );

@@ -8,6 +8,10 @@ import {
   serachTracksFuntion,
 } from '../../../hooks/UseSearch/UseSearchTracks';
 import {useSearchStore} from '../../../store/searchStore/SearchStore';
+import {FontAwesome6, Ionicons} from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
+import {RootStackParamList} from '../../../types/screenStack';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type FormData = {
   search: string;
@@ -16,6 +20,8 @@ type FormData = {
 export const SearchForm: React.FC = () => {
   const {control, handleSubmit} = useForm<FormData>();
   const {setTrackList, setArtistList, setAlbumsList} = useSearchStore();
+  const navigateTo =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -33,8 +39,16 @@ export const SearchForm: React.FC = () => {
     }
   };
 
+  const GoBackScreen = () => {
+    navigateTo.goBack();
+  };
+
   return (
     <View style={styles.container}>
+      <RNBounceable style={styles.btnGoBack} onPress={() => GoBackScreen()}>
+        <FontAwesome6 name="arrow-left-long" size={24} color="#bbb" />
+      </RNBounceable>
+
       <Controller
         control={control}
         name="search"
@@ -45,7 +59,7 @@ export const SearchForm: React.FC = () => {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            placeholder="Buscar"
+            placeholder="Search something"
             placeholderTextColor="#888"
             onSubmitEditing={handleSubmit(onSubmit)}
           />
@@ -53,7 +67,7 @@ export const SearchForm: React.FC = () => {
       />
 
       <RNBounceable style={styles.btnContent} onPress={handleSubmit(onSubmit)}>
-        <Text style={styles.textBtn}>Search</Text>
+        <Ionicons name="search-sharp" size={28} color="#bbb" />
       </RNBounceable>
     </View>
   );
@@ -75,14 +89,17 @@ const styles = StyleSheet.create({
     fontFamily: 'Gilroy-Bold',
     marginHorizontal: 5,
   },
-  textBtn: {
-    fontSize: 16,
-    color: '#ccc',
-  },
   btnContent: {
     height: 45,
     width: 60,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  btnGoBack: {
+    height: 45,
+    width: 40,
+    paddingLeft: 5,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
   },
 });

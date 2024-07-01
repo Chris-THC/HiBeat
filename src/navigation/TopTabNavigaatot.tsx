@@ -11,11 +11,10 @@ export const TopTabNavigator = () => {
     <Tab.Navigator
       screenOptions={{
         tabBarLabelStyle: {fontSize: 12, color: '#fff'},
-
-        tabBarStyle: {backgroundColor: colorBase, flex: 1},
+        tabBarStyle: {backgroundColor: colorBase},
       }}>
       <Tab.Screen name="Tracks" component={TrackSearch} />
-      <Tab.Screen name="Artist" component={ArtistSearch} />
+      <Tab.Screen name="Artists" component={ArtistSearch} />
       <Tab.Screen name="Albums" component={AlbumSearch} />
     </Tab.Navigator>
   );

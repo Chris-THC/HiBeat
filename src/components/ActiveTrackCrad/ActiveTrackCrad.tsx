@@ -63,13 +63,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  text: {
-    color: 'white', // Para que el texto sea visible sobre el fondo semitransparente
-  },
 
   // TrackSection
   container: {
-    height: 65,
+    height: 60,
     backgroundColor: '#202125',
     flexDirection: 'row',
     alignItems: 'center',
