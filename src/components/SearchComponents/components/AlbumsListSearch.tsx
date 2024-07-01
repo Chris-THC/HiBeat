@@ -8,7 +8,7 @@ import FastImage from 'react-native-fast-image';
 import {colorBase} from '../../../enums/AppColors';
 import {AlbumDetailed} from '../../../interfaces/SerachInterface/AlbumDetails';
 import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
-import {useArtistStore} from '../../../store/artistStore/artistStore';
+import {useAlbumStore} from '../../../store/albumStore/albumStore';
 import {RootStackParamList} from '../../../types/screenStack';
 import {ImageColorPalette} from '../../../utils/colors/ColorsFromImg';
 
@@ -20,7 +20,7 @@ interface PropCradArtist {
 }
 
 const CradAalbum: React.FC<PropCradArtist> = ({album}) => {
-  const {setArtistId} = useArtistStore();
+  const {setAlbumsInfoSelected} = useAlbumStore();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
@@ -28,14 +28,14 @@ const CradAalbum: React.FC<PropCradArtist> = ({album}) => {
 
   const GetColorImage = async () => {
     const colorImg = await ImageColorPalette(
-      album?.thumbnails?.[1]?.url || album?.thumbnails?.[0]?.url,
+      album?.thumbnails?.[4]?.url || album?.thumbnails?.[3]?.url,
     );
     setColorTaget(colorImg);
   };
 
   const GoToArtistScreen = () => {
-    // setArtistId(artist.artistId);
-    // navigation.navigate('ArtistScren');
+    setAlbumsInfoSelected(album);
+    navigation.navigate('Album');
   };
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const CradAalbum: React.FC<PropCradArtist> = ({album}) => {
         <FastImage
           style={styles.imgCrad}
           source={{
-            uri: album?.thumbnails?.[1]?.url || album?.thumbnails?.[0]?.url,
+            uri: album?.thumbnails?.[4]?.url || album?.thumbnails?.[3]?.url,
             priority: FastImage.priority.high,
           }}
           resizeMode={FastImage.resizeMode.cover}

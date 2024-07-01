@@ -19,7 +19,7 @@ export const Artist = () => {
   if (isLoading) {
     return (
       <View style={styles.artistMainContainer}>
-        <ActivityIndicator size="small" color="#0000ff" />
+        <ActivityIndicator size="large" color="#0000ff" />
       </View>
     );
   }
