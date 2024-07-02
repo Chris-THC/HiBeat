@@ -5,16 +5,22 @@ import {AlbumHeader} from '../../components/Album/components/AlbumHeader';
 import {TrackListByAlbum} from '../../components/Album/components/TrackListByAlbum';
 import {StatusUpBar} from '../../components/StatusBar/StatusUpBar';
 import {colorBase} from '../../enums/AppColors';
-import {useAlbumById} from '../../hooks/UseAlbum/UseAlbum';
+import {useStreamingAlbum} from '../../hooks/UseAlbum/UseAlbum';
 import {AndroidColors} from '../../interfaces/colorsInterface/Colors';
 import {useAlbumStore} from '../../store/albumStore/albumStore';
 import {ImageColorPalette} from '../../utils/colors/ColorsFromImg';
+import {ActiveTrackCrad} from '../../components/ActiveTrackCrad/ActiveTrackCrad';
 // const navigation =
 //   useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
 export const Album = () => {
   const {albumInfoSelected} = useAlbumStore();
-  const {isLoading, data: albumData} = useAlbumById(albumInfoSelected!.albumId);
+
+  const {isLoading, data: albumData} = useStreamingAlbum(
+    albumInfoSelected!.playlistId,
+    albumInfoSelected!.thumbnails?.[4]?.url ||
+      albumInfoSelected!.thumbnails?.[3]?.url,
+  );
 
   const [colorTaget, setColorTaget] = useState<AndroidColors | null>(null);
 
@@ -58,10 +64,11 @@ export const Album = () => {
           style={{flex: 1}}>
           <AlbumHeader albumInfoSelected={albumInfoSelected!} />
         </LinearGradient>
-        <View style={{position: 'relative', top: -69}}>
-          <TrackListByAlbum topSongs={albumData!.songs} />
+        <View style={{position: 'relative', top: -69, height: 'auto'}}>
+          <TrackListByAlbum topSongs={albumData!} />
         </View>
       </ScrollView>
+      <ActiveTrackCrad />
     </View>
   );
 };

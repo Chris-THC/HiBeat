@@ -9,13 +9,14 @@ import {useAlbumStore} from '../../../store/albumStore/albumStore';
 import {getStreamingData} from '../../../services/streaming/StreamingTrack';
 import TrackPlayer from 'react-native-track-player';
 import {handlerPlay} from '../../../services/TrackPlayerService/TrackPlayerEvents';
+import {AlbumStreaming} from '../../../interfaces/AlbumSearch/AlbumStreaming';
 
 interface PropsTrackList {
-  topSongs: Song[];
+  topSongs: AlbumStreaming[];
 }
 
 interface PropTrackCard {
-  track: Song;
+  track: AlbumStreaming;
   position: number;
   onTrackSelect: (position: number) => void;
 }
@@ -45,9 +46,9 @@ const TrackCard: React.FC<PropTrackCard> = ({
       </View>
       <View style={styles.infoContainer}>
         <Text numberOfLines={1} ellipsizeMode="tail" style={styles.trackName}>
-          {track.name}
+          {track.title}
         </Text>
-        <Text style={styles.artistName}>{track.artist.name}</Text>
+        <Text style={styles.artistName}>{track.artist}</Text>
       </View>
       <RNBounceable
         onPress={() => console.log('Opciones')}
@@ -69,6 +70,11 @@ export const TrackListByAlbum: React.FC<PropsTrackList> = ({topSongs}) => {
   };
 
   const handleSelectTrack = async (position: number) => {
+    const promises = topSongs.map(track => {
+      return getStreamingData(track.videoId);
+    });
+    const streamingDataArray = await Promise.all(promises);
+    await TrackPlayer.setQueue(streamingDataArray);
     await TrackPlayer.skip(position);
     handlerPlay();
   };

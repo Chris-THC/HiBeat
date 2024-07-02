@@ -1,12 +1,12 @@
 import {create} from 'zustand';
-import {AlbumDetailed} from '../../interfaces/SerachInterface/AlbumDetails';
+import {AlbumSearch} from '../../interfaces/AlbumSearch/AlbumSearch';
 
 interface AlbumStore {
   albumId: string;
   setAlbumId: (albumId: string) => void;
 
-  albumInfoSelected: AlbumDetailed | null;
-  setAlbumsInfoSelected: (album: AlbumDetailed) => void;
+  albumInfoSelected: AlbumSearch | null;
+  setAlbumsInfoSelected: (album: AlbumSearch) => void;
 }
 
 export const useAlbumStore = create<AlbumStore>(set => ({
@@ -18,7 +18,7 @@ export const useAlbumStore = create<AlbumStore>(set => ({
   },
 
   albumInfoSelected: null,
-  setAlbumsInfoSelected: (album: AlbumDetailed): void => {
+  setAlbumsInfoSelected: (album: AlbumSearch): void => {
     return set(() => ({
       albumInfoSelected: album,
     }));

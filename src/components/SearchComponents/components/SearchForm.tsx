@@ -12,6 +12,7 @@ import {FontAwesome6, Ionicons} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackParamList} from '../../../types/screenStack';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {searchAlbumsByAxios} from '../../../hooks/UseAlbumSearch/UseAlbumSearch';
 
 type FormData = {
   search: string;
@@ -25,15 +26,15 @@ export const SearchForm: React.FC = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      const [tracksInfo, artistInfo, albumsInfo] = await Promise.all([
+      const [tracksInfo, artistInfo, albumSearch] = await Promise.all([
         serachTracksFuntion(data.search),
         serachArtistFuntion(data.search),
-        serachAlbumsFuntion(data.search),
+        searchAlbumsByAxios(data.search),
       ]);
 
       setTrackList(tracksInfo);
       setArtistList(artistInfo);
-      setAlbumsList(albumsInfo);
+      setAlbumsList(albumSearch);
     } catch (error) {
       console.error('Error fetching data:', error);
     }

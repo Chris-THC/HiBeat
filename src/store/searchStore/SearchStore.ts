@@ -1,7 +1,7 @@
 import {create} from 'zustand';
-import {SongDetailed} from '../../interfaces/SerachInterface/SearchTracks';
+import {AlbumSearch} from '../../interfaces/AlbumSearch/AlbumSearch';
 import {ArtistDetailed} from '../../interfaces/SerachInterface/ArtistDetails';
-import {AlbumDetailed} from '../../interfaces/SerachInterface/AlbumDetails';
+import {SongDetailed} from '../../interfaces/SerachInterface/SearchTracks';
 
 interface SearchStore {
   searchSomething: string;
@@ -13,8 +13,8 @@ interface SearchStore {
   artistList: ArtistDetailed[] | null;
   setArtistList: (artistList: ArtistDetailed[]) => void;
 
-  albumsList: AlbumDetailed[] | null;
-  setAlbumsList: (album: AlbumDetailed[]) => void;
+  albumsList: AlbumSearch[] | null;
+  setAlbumsList: (album: AlbumSearch[] | null) => void;
 }
 
 export const useSearchStore = create<SearchStore>(set => ({
@@ -40,7 +40,7 @@ export const useSearchStore = create<SearchStore>(set => ({
   },
 
   albumsList: null,
-  setAlbumsList: (album: AlbumDetailed[]): void => {
+  setAlbumsList: (album: AlbumSearch[] | null): void => {
     return set(() => ({
       albumsList: album,
     }));

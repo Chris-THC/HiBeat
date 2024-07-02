@@ -11,12 +11,13 @@ import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
 import {useAlbumStore} from '../../../store/albumStore/albumStore';
 import {RootStackParamList} from '../../../types/screenStack';
 import {ImageColorPalette} from '../../../utils/colors/ColorsFromImg';
+import { AlbumSearch } from '../../../interfaces/AlbumSearch/AlbumSearch';
 
 interface PropArtist {
-  albumArray: AlbumDetailed[];
+  albumArray: AlbumSearch[];
 }
 interface PropCradArtist {
-  album: AlbumDetailed;
+  album: AlbumSearch;
 }
 
 const CradAalbum: React.FC<PropCradArtist> = ({album}) => {
