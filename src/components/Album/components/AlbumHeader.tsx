@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {AlbumDetailed} from '../../../interfaces/SerachInterface/AlbumDetails';
 import {AlbumSearch} from '../../../interfaces/AlbumSearch/AlbumSearch';
 
 interface PropArtist {

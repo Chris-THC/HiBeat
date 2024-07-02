@@ -6,7 +6,6 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {colorBase} from '../../../enums/AppColors';
-import {AlbumDetailed} from '../../../interfaces/SerachInterface/AlbumDetails';
 import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
 import {useAlbumStore} from '../../../store/albumStore/albumStore';
 import {RootStackParamList} from '../../../types/screenStack';

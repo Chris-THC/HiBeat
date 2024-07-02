@@ -1,18 +1,17 @@
+import {FontAwesome6, Ionicons} from '@expo/vector-icons';
 import RNBounceable from '@freakycoder/react-native-bounceable';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {StyleSheet, TextInput, View} from 'react-native';
+import {searchAlbumsByAxios} from '../../../hooks/UseAlbumSearch/UseAlbumSearch';
 import {
-  serachAlbumsFuntion,
   serachArtistFuntion,
   serachTracksFuntion,
 } from '../../../hooks/UseSearch/UseSearchTracks';
 import {useSearchStore} from '../../../store/searchStore/SearchStore';
-import {FontAwesome6, Ionicons} from '@expo/vector-icons';
-import {useNavigation} from '@react-navigation/native';
 import {RootStackParamList} from '../../../types/screenStack';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {searchAlbumsByAxios} from '../../../hooks/UseAlbumSearch/UseAlbumSearch';
 
 type FormData = {
   search: string;

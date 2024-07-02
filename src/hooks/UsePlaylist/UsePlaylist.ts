@@ -50,9 +50,7 @@ export const randomPlaylistFuncion = async () => {
   }
 };
 
-export const useRandomPlaylist = (): UseQueryResult<
-  RandomPlaylistInterface[]
-> => {
+export const useRandomPlaylist = (): UseQueryResult<RandomPlaylistInterface[]> => {
   return useQuery({
     queryKey: ['randomPlaylist'],
     queryFn: randomPlaylistFuncion,
