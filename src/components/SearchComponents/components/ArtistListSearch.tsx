@@ -40,7 +40,7 @@ const CradArtist: React.FC<PropCradArtist> = ({artist}) => {
 
   useEffect(() => {
     GetColorImage();
-  }, []);
+  }, [artist.artistId]);
 
   return (
     <RNBounceable

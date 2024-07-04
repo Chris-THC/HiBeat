@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
   contentStack: {
     flex: 1,
     backgroundColor: colorBase,
+    minHeight: '100%',
   },
   textStyles: {
     fontSize: 16,

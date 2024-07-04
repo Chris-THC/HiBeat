@@ -40,7 +40,7 @@ const CradAalbum: React.FC<PropCradArtist> = ({album}) => {
 
   useEffect(() => {
     GetColorImage();
-  }, []);
+  }, [album.artist.artistId]);
 
   return (
     <RNBounceable
