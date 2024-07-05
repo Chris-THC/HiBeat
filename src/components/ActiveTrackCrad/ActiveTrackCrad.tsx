@@ -40,8 +40,8 @@ export const ActiveTrackCrad: React.FC = () => {
           bounce={true}
           repeatSpacer={40}
           marqueeDelay={30}>
-          {`${activeTrack?.title || 'Waiting a new track'}  •  ${
-            activeTrack?.artist || 'Waiting Artist'
+          {`${activeTrack?.title || 'Track name'}  •  ${
+            activeTrack?.artist || 'Artist name'
           }`}
         </TextTicker>
       </View>
@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    height: 50,
-    width: 50,
+    height: 48,
+    width: 48,
     borderRadius: 8,
   },
   infoContainer: {
@@ -89,14 +89,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     height: '100%',
   },
-  trackName: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
   artistName: {
-    color: '#ccc',
-    fontSize: 16,
+    color: '#fff',
+    fontSize: 15,
     fontWeight: '500',
   },
   actionsContainer: {

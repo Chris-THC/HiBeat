@@ -10,7 +10,7 @@ export const AlbumSearch = () => {
   if (albumsList === null) {
     return (
       <View style={styles.contentNull}>
-        <Text style={styles.textStyleError}>Ups! hay un error  :(</Text>
+        <Text style={styles.textStyleError}></Text>
       </View>
     );
   }

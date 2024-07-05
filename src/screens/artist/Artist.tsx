@@ -42,13 +42,7 @@ export const Artist = () => {
 
           <LinearGradient
             colors={['transparent', colorBase]}
-            style={{
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              bottom: 0,
-              height: 490,
-            }}
+            style={styles.linearGradient}
           />
         </View>
 

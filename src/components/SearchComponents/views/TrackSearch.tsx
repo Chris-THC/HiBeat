@@ -11,7 +11,7 @@ export const TrackSearch = () => {
     <View style={styles.trackContent}>
       {!trackList ? (
         <View style={styles.contentNull}>
-          <Text style={styles.textStyleError}>Ups! hay un error :(</Text>
+          <Text style={styles.textStyleError}></Text>
         </View>
       ) : (
         <View style={styles.trackContent}>

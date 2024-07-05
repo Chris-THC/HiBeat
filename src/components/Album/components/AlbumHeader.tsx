@@ -3,21 +3,23 @@ import {StyleSheet, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {AlbumSearch} from '../../../interfaces/AlbumSearch/AlbumSearch';
 import TextTicker from 'react-native-text-ticker';
+import {AlbumSummary} from '../../../interfaces/ArtistInterface/YTMuiscArtistInterface';
+import {getThumbnailUrl} from '../../../utils/selectImage/SelectImage';
 
 interface PropArtist {
-  albumInfoSelected: AlbumSearch;
+  albumInfoSelected: AlbumSearch | AlbumSummary;
 }
 
 export const AlbumHeader: React.FC<PropArtist> = ({albumInfoSelected}) => {
+  const thumbnailUrl = getThumbnailUrl(albumInfoSelected?.thumbnails);
+
   return (
     <View style={styles.contenAlbumHeader}>
       <View>
         <FastImage
           style={styles.imageStyles}
           source={{
-            uri:
-              albumInfoSelected?.thumbnails?.[4]?.url ||
-              albumInfoSelected?.thumbnails?.[3]?.url,
+            uri: thumbnailUrl,
             priority: FastImage.priority.high,
           }}
           resizeMode={FastImage.resizeMode.cover}

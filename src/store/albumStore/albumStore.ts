@@ -1,12 +1,13 @@
 import {create} from 'zustand';
 import {AlbumSearch} from '../../interfaces/AlbumSearch/AlbumSearch';
+import {AlbumSummary} from '../../interfaces/ArtistInterface/YTMuiscArtistInterface';
 
 interface AlbumStore {
   albumId: string;
   setAlbumId: (albumId: string) => void;
 
-  albumInfoSelected: AlbumSearch | null;
-  setAlbumsInfoSelected: (album: AlbumSearch) => void;
+  albumInfoSelected: AlbumSearch | AlbumSummary | null;
+  setAlbumsInfoSelected: (album: AlbumSearch | AlbumSummary) => void;
 }
 
 export const useAlbumStore = create<AlbumStore>(set => ({
@@ -18,7 +19,7 @@ export const useAlbumStore = create<AlbumStore>(set => ({
   },
 
   albumInfoSelected: null,
-  setAlbumsInfoSelected: (album: AlbumSearch): void => {
+  setAlbumsInfoSelected: (album: AlbumSearch | AlbumSummary): void => {
     return set(() => ({
       albumInfoSelected: album,
     }));

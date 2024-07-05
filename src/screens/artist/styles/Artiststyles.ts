@@ -38,4 +38,12 @@ export default StyleSheet.create({
     marginLeft: 10,
     marginVertical: 10,
   },
+  // Styles linea gradiant
+  linearGradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 490,
+  },
 });

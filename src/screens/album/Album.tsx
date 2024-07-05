@@ -27,14 +27,14 @@ export const Album = () => {
   const GetColorImage = async () => {
     const colorImg = await ImageColorPalette(
       albumInfoSelected!.thumbnails?.[4]?.url ||
-        albumInfoSelected!.thumbnails?.[3]?.url,
+        albumInfoSelected!.thumbnails?.[1]?.url,
     );
     setColorTaget(colorImg);
   };
 
   useEffect(() => {
     GetColorImage();
-  }, []);
+  }, [albumInfoSelected?.name]);
 
   if (isLoading) {
     return (

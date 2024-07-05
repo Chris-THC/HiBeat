@@ -1,14 +1,18 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {AlbumSummary} from '../../../../interfaces/ArtistInterface/YTMuiscArtistInterface';
-import {FlashList} from '@shopify/flash-list';
-import FastImage from 'react-native-fast-image';
 import RNBounceable from '@freakycoder/react-native-bounceable';
+import {FlashList} from '@shopify/flash-list';
+import React, {useEffect, useState} from 'react';
+import {Text, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
+import {AlbumSummary} from '../../../../interfaces/ArtistInterface/YTMuiscArtistInterface';
 import {AndroidColors} from '../../../../interfaces/colorsInterface/Colors';
 import {ImageColorPalette} from '../../../../utils/colors/ColorsFromImg';
-
-import styles from './styles/AlbumListStyles';
 import {FontAwesome} from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useAlbumStore} from '../../../../store/albumStore/albumStore';
+import {RootStackParamList} from '../../../../types/screenStack';
+import styles from './styles/AlbumListStyles';
+import {getThumbnailUrl} from '../../../../utils/selectImage/SelectImage';
 
 interface AlbumListProps {
   topAlbums: AlbumSummary[];
@@ -19,9 +23,12 @@ interface AlbumCradProp {
 }
 
 const AlbumCard: React.FC<AlbumCradProp> = ({album}) => {
-  const [colorTaget, setColorTaget] = useState<
-    AndroidColors | null | undefined
-  >(null);
+  const [colorTaget, setColorTaget] = useState<AndroidColors | null>(null);
+  const {setAlbumsInfoSelected} = useAlbumStore();
+  const thumbnailUrl = getThumbnailUrl(album?.thumbnails);
+
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const GetColorImage = async () => {
     const colorImg = await ImageColorPalette(album.thumbnails[1].url);
@@ -30,12 +37,17 @@ const AlbumCard: React.FC<AlbumCradProp> = ({album}) => {
 
   useEffect(() => {
     GetColorImage();
-  }, []);
+  }, [album.albumId]);
+
+  const GoToArtistScreen = () => {
+    setAlbumsInfoSelected(album);
+    navigation.navigate('Album');
+  };
 
   return (
     <RNBounceable
       onPress={() => {
-        console.log(album.albumId);
+        GoToArtistScreen();
       }}
       style={[
         styles.playlistCard,
@@ -47,7 +59,7 @@ const AlbumCard: React.FC<AlbumCradProp> = ({album}) => {
       <FastImage
         style={styles.imageCrad}
         source={{
-          uri: album?.thumbnails?.[1]?.url || album?.thumbnails?.[0]?.url,
+          uri: thumbnailUrl,
           priority: FastImage.priority.high,
         }}
         resizeMode={FastImage.resizeMode.cover}
