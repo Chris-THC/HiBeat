@@ -61,15 +61,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
-  // btnPlayNPause: {
-  //   width: 55,
-  //   height: 55,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   alignContent: 'center',
-  //   borderRadius: 50,
-  // },
   btnPlayNPause: {
     width: 55,
     height: 55,

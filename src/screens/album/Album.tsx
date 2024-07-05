@@ -52,7 +52,7 @@ export const Album = () => {
 
   return (
     <View style={styles.albumContainer}>
-      <ScrollView>
+      <>
         <StatusUpBar backgroundColor={colorTaget?.dominant || colorBase} />
         <LinearGradient
           colors={[
@@ -64,10 +64,10 @@ export const Album = () => {
           style={{flex: 1}}>
           <AlbumHeader albumInfoSelected={albumInfoSelected!} />
         </LinearGradient>
-        <View style={{position: 'relative', top: -69, height: 'auto'}}>
-          <TrackListByAlbum topSongs={albumData!} />
-        </View>
-      </ScrollView>
+      </>
+      <View style={{height: 'auto', flex: 2.8}}>
+        <TrackListByAlbum topSongs={albumData!} />
+      </View>
       <ActiveTrackCrad />
     </View>
   );
@@ -78,32 +78,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colorBase,
   },
-  imageStyles: {
-    height: 150,
-    width: 150,
-    borderRadius: 5,
-  },
-  contenAlbumHeader: {
-    height: 200,
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    paddingHorizontal: 10,
-    paddingTop: 20,
-  },
-  contentText: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    alignContent: 'center',
-    color: '#fff',
-    marginLeft: 10,
-    height: '85%',
-    width: '60%',
-  },
-
   artistName: {
     fontSize: 25,
     fontWeight: 'bold',

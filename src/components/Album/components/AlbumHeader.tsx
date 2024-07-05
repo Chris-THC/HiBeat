@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {AlbumSearch} from '../../../interfaces/AlbumSearch/AlbumSearch';
+import TextTicker from 'react-native-text-ticker';
 
 interface PropArtist {
   albumInfoSelected: AlbumSearch;
@@ -23,9 +24,16 @@ export const AlbumHeader: React.FC<PropArtist> = ({albumInfoSelected}) => {
         />
       </View>
       <View style={styles.contentText}>
-        <Text numberOfLines={1} ellipsizeMode="tail" style={styles.artistName}>
+        <TextTicker
+          style={styles.artistName}
+          duration={10000}
+          loop
+          bounce={true}
+          repeatSpacer={50}
+          marqueeDelay={20}>
           {albumInfoSelected!.name}
-        </Text>
+        </TextTicker>
+
         <Text
           numberOfLines={1}
           ellipsizeMode="tail"
@@ -35,7 +43,7 @@ export const AlbumHeader: React.FC<PropArtist> = ({albumInfoSelected}) => {
         <Text
           numberOfLines={1}
           ellipsizeMode="tail"
-          style={styles.yearText}>{`Year • ${albumInfoSelected!.year}`}</Text>
+          style={styles.yearText}>{`${albumInfoSelected!.year}`}</Text>
       </View>
     </View>
   );
@@ -43,12 +51,12 @@ export const AlbumHeader: React.FC<PropArtist> = ({albumInfoSelected}) => {
 
 const styles = StyleSheet.create({
   imageStyles: {
-    height: 150,
-    width: 150,
-    borderRadius: 5,
+    height: 160,
+    width: 160,
+    borderRadius: 8,
   },
   contenAlbumHeader: {
-    height: 250,
+    height: 280,
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
@@ -56,6 +64,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingHorizontal: 10,
     paddingTop: 20,
+    marginBottom: 10,
   },
   contentText: {
     display: 'flex',
@@ -73,6 +82,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginHorizontal: 2,
+    width: 210,
     color: '#fff',
     marginTop: 8,
     flexShrink: 1,
