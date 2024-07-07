@@ -11,10 +11,17 @@ import {ActionsAndOptions} from '../components/ActionsAndOptions';
 import {ProgressAndTrackInfo} from '../components/ProgressAndTrackInfo';
 import {TrackCover} from '../components/TrackCover';
 import {TrackPlayerControls} from '../components/TrackPlayerControls';
+import {AntDesign} from '@expo/vector-icons';
+import RNBounceable from '@freakycoder/react-native-bounceable';
+import {useNavigation} from '@react-navigation/native';
+import {RootStackParamList} from '../../../types/screenStack';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export const PlayerScreen = () => {
   const activeTrack = useActiveTrack();
   const [colorCover, setColorCover] = useState<AndroidColors | null>(null);
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const getColorImage = useCallback(async () => {
     const colorImg = await ImageColorPalette(
@@ -27,23 +34,34 @@ export const PlayerScreen = () => {
     getColorImage();
   }, [getColorImage]);
 
+  const GoBackComponent = () => {
+    return (
+      <RNBounceable
+        onPress={() => navigation.goBack()}
+        style={styles.btnGoBack}>
+        <AntDesign name="down" size={30} color="#fff" />
+      </RNBounceable>
+    );
+  };
+
   return (
     <LinearGradient
       style={styles.container}
-      colors={[colorCover?.dominant || colorBase, colorBase, colorBase]}
-      locations={[0.003, 0.8, 0.9]}>
+      colors={[colorCover?.dominant || colorBase, '#26272b', '#26272b']}
+      locations={[0.003, 1, 0.1]}>
       <StatusUpBar backgroundColor={colorCover?.dominant || colorBase} />
+      <GoBackComponent />
       <View style={styles.imageContainer}>
         <TrackCover cover={activeTrack?.artwork!} />
       </View>
       <View style={styles.titleProgressContainer}>
         <ProgressAndTrackInfo
-          lightMuted={colorCover?.dominant || '#5361b5'}
-          mutued={colorCover?.dominant || '#088bba'}
+          lightMuted={colorCover?.average || '#5361b5'}
+          mutued={colorCover?.average || '#088bba'}
         />
       </View>
       <View style={styles.controlsContainer}>
-        <TrackPlayerControls color={colorCover?.dominant || '#088bba'} />
+        <TrackPlayerControls color={colorCover?.average || '#088bba'} />
       </View>
       <View style={styles.actionsContainer}>
         <ActionsAndOptions />
@@ -74,6 +92,17 @@ const styles = StyleSheet.create({
   },
   actionsContainer: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  // style btn go back:
+  btnGoBack: {
+    width: 50,
+    height: 50,
+    position: 'absolute',
+    zIndex: 2,
+    top: -5,
+    left: 8,
     justifyContent: 'center',
     alignItems: 'center',
   },

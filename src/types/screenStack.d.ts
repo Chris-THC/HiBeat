@@ -6,4 +6,5 @@ export type RootStackParamList = {
   Player: undefined;
   Search: undefined;
   StackPlayer: undefined;
+  Playlist: undefined;
 };

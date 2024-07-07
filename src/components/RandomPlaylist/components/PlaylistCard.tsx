@@ -1,11 +1,15 @@
-import {FontAwesome} from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import RNBounceable from '@freakycoder/react-native-bounceable';
-import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React, { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
-import {RandomPlaylistInterface} from '../../../interfaces/randomPlayList/RandomPlaylist';
-import {ImageColorPalette} from '../../../utils/colors/ColorsFromImg';
+import { AndroidColors } from '../../../interfaces/colorsInterface/Colors';
+import { RandomPlaylistInterface } from '../../../interfaces/randomPlayList/RandomPlaylist';
+import { usePlaylisStore } from '../../../store/playlistStore/playlistStore';
+import { RootStackParamList } from '../../../types/screenStack';
+import { ImageColorPalette } from '../../../utils/colors/ColorsFromImg';
 import styles from '../styles/PlaylistCardstyles';
 
 interface PropCard {
@@ -13,7 +17,10 @@ interface PropCard {
 }
 
 export const PlaylistCard: React.FC<PropCard> = ({playlist}) => {
-  const [colorTaget, setColorTaget] = useState<AndroidColors | null | undefined>(null);
+  const navigateTo =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const [colorTaget, setColorTaget] = useState<AndroidColors | null>(null);
+  const {setIdPlaylist, setPlaylistSelected} = usePlaylisStore();
 
   const GetColorImage = async () => {
     const colorImg = await ImageColorPalette(playlist.artwork);
@@ -27,13 +34,15 @@ export const PlaylistCard: React.FC<PropCard> = ({playlist}) => {
   return (
     <RNBounceable
       onPress={() => {
-        console.log(playlist.browseId);
+        setPlaylistSelected(playlist!);
+        setIdPlaylist(playlist.browseId);
+        navigateTo.navigate('Playlist');
       }}
       style={[
         styles.playlistCard,
         {
           backgroundColor: `${!colorTaget ? '#22242a' : colorTaget?.muted}`,
-          borderColor: `${!colorTaget ? '#22242a' : colorTaget?.darkMuted}`,
+          borderColor: `${!colorTaget ? '#22242a' : colorTaget?.average}`,
         },
       ]}>
       <FastImage

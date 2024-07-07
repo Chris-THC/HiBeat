@@ -10,8 +10,8 @@ import {Album} from '../screens/album/Album';
 import {Artist} from '../screens/artist/Artist';
 import {Home} from '../screens/home/Home';
 import {Player} from '../screens/player/Player';
+import {Playlist} from '../screens/playlist/Playlist';
 import {RandomPlayListStack} from '../screens/randomPlaylist/RandomPlaylistStack';
-import {Search} from '../screens/search/Search';
 import {StackPlayer} from '../screens/stack/StackPlayer';
 import {RootStackParamList} from '../types/screenStack';
 
@@ -58,11 +58,12 @@ const Navigation = () => {
           <Stack.Screen
             name="StackPlayer"
             options={{
-              cardStyleInterpolator: CardStyleInterpolators.forRevealFromBottomAndroid,
+              cardStyleInterpolator:
+                CardStyleInterpolators.forRevealFromBottomAndroid,
             }}
             component={StackPlayer}
           />
-          <Stack.Screen name="Search" component={Search} />
+          <Stack.Screen name="Playlist" component={Playlist} />
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>

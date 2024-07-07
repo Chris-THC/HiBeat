@@ -1,12 +1,13 @@
-import {FontAwesome6} from '@expo/vector-icons';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {FlashList} from '@shopify/flash-list';
+import { FontAwesome6 } from '@expo/vector-icons';
+import RNBounceable from '@freakycoder/react-native-bounceable';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { FlashList } from '@shopify/flash-list';
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {RandomPlaylistInterface} from '../../../interfaces/randomPlayList/RandomPlaylist';
-import {RootStackParamList} from '../../../types/screenStack';
-import {PlaylistCard} from '../components/PlaylistCard';
+import { Text, View } from 'react-native';
+import { RandomPlaylistInterface } from '../../../interfaces/randomPlayList/RandomPlaylist';
+import { RootStackParamList } from '../../../types/screenStack';
+import { PlaylistCard } from '../components/PlaylistCard';
 import styles from '../styles/PlaylistAllItemsListStyles';
 
 interface PropRandomPlaylistInfo {
@@ -24,10 +25,8 @@ export const PlaylistAllItemsList: React.FC<PropRandomPlaylistInfo> = ({
   };
 
   return (
-    <>
-      <TouchableOpacity
-        onPress={GoBackScreen}
-        style={styles.mainTitleContainer}>
+    <View style={{flex: 1}}>
+      <RNBounceable onPress={GoBackScreen} style={styles.mainTitleContainer}>
         <View>
           <Text>
             <FontAwesome6 name="arrow-left-long" size={30} color="#fff" />
@@ -37,7 +36,7 @@ export const PlaylistAllItemsList: React.FC<PropRandomPlaylistInfo> = ({
           <Text style={styles.randomPlaylistMainTitle}>Random Playlist</Text>
         </View>
         <View></View>
-      </TouchableOpacity>
+      </RNBounceable>
 
       <FlashList
         data={playlist}
@@ -47,6 +46,6 @@ export const PlaylistAllItemsList: React.FC<PropRandomPlaylistInfo> = ({
         estimatedItemSize={50}
         renderItem={({item}) => <PlaylistCard playlist={item} />}
       />
-    </>
+    </View>
   );
 };
