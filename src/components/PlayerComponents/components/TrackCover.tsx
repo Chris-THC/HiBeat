@@ -1,17 +1,19 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {useActiveTrack} from 'react-native-track-player';
 import {coverImageDefault} from '../../../utils/assets/Images';
 
-export const TrackCover: React.FC = () => {
-  const activeTrack = useActiveTrack();
+interface PropsTrack {
+  cover: string;
+}
+
+export const TrackCover: React.FC<PropsTrack> = ({cover}) => {
   return (
     <View>
       <FastImage
         style={styles.imgStyles}
         source={{
-          uri: activeTrack?.artwork || coverImageDefault,
+          uri: cover || coverImageDefault,
           priority: FastImage.priority.high,
         }}
         resizeMode={FastImage.resizeMode.cover}
