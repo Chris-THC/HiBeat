@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {FontAwesome} from '@expo/vector-icons';
+import {AntDesign, FontAwesome} from '@expo/vector-icons';
 import RNBounceable from '@freakycoder/react-native-bounceable';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -47,7 +47,7 @@ export const ActiveTrackCrad: React.FC = () => {
       </View>
       <RNBounceable onPress={togglePlayback} style={styles.actionsContainer}>
         {isPlaying ? (
-          <FontAwesome name="pause" size={22} color="#fff" />
+          <AntDesign name="pause" size={28} color={'#fff'} />
         ) : (
           <FontAwesome name="play" size={22} color="#fff" />
         )}

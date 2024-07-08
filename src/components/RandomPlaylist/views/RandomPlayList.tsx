@@ -11,7 +11,7 @@ import {useRandomPlaylistStore} from '../../../store/randomPlatlistStore/randomP
 import {PlayListLoader} from '../../../utils/skeleton/loaders/PlayListLoader/PlayListLoader';
 
 export const RandomPlayList = () => {
-  const {isLoading, data: albumsArray} = useRandomPlaylist();
+  const {isLoading, data: albumsArray, isError} = useRandomPlaylist();
   const navigateTo =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const {setRandomPlaylistStore} = useRandomPlaylistStore();
@@ -27,6 +27,8 @@ export const RandomPlayList = () => {
         <PlayListLoader />
       </View>
     );
+  } else if (isError) {
+    return <Text>Something went wrong</Text>;
   }
 
   return (

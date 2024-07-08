@@ -7,10 +7,12 @@ import {FontAwesome6} from '@expo/vector-icons';
 import {RecientlyAlbumLoader} from '../../../utils/skeleton/loaders/RecientlyAlbums/RecientlyAudioLoader';
 
 export const AlbumsResale = () => {
-  const {isLoading: loadAlbum, data: albumsRelase} = useAlbumRelase();
+  const {isLoading: loadAlbum, data: albumsRelase, isError} = useAlbumRelase();
 
   if (loadAlbum) {
     return <RecientlyAlbumLoader />;
+  } else if (isError) {
+    return <Text>Something went wrong</Text>;
   }
 
   return (

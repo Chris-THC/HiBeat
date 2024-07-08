@@ -7,12 +7,22 @@ import styles from '../styles/TopArtistSryles';
 import {TopArtistLoader} from '../../../utils/skeleton/loaders/TopArtist/TopArtisLoader';
 
 export const TopArtist = () => {
-  const {data: Top10, isLoading: isLoadingTop10} = useTopArtistGlobal();
+  const {
+    data: Top10,
+    isLoading: isLoadingTop10,
+    isError,
+  } = useTopArtistGlobal();
 
   if (isLoadingTop10) {
     return (
       <View>
         <TopArtistLoader />
+      </View>
+    );
+  } else if (isError) {
+    return (
+      <View>
+        <Text style={{fontSize: 20, color: '#fff'}}>Ocurrio un error</Text>
       </View>
     );
   }

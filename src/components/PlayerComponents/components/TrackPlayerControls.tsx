@@ -1,4 +1,4 @@
-import {FontAwesome} from '@expo/vector-icons';
+import {AntDesign, FontAwesome} from '@expo/vector-icons';
 import RNBounceable from '@freakycoder/react-native-bounceable';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -34,7 +34,7 @@ export const TrackPlayerControls: React.FC<ColorProp> = ({color}) => {
         style={[styles.btnPlayNPause, {backgroundColor: color}]}
         onPress={togglePlayback}>
         {isPlaying ? (
-          <FontAwesome name="pause" size={25} color={'#fff'} />
+          <AntDesign name="pause" size={28} color={'#fff'} />
         ) : (
           <FontAwesome name="play" size={25} color={'#fff'} />
         )}
