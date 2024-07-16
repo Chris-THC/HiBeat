@@ -1,9 +1,14 @@
+import {AntDesign} from '@expo/vector-icons';
+import RNBounceable from '@freakycoder/react-native-bounceable';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useCallback, useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useActiveTrack} from 'react-native-track-player';
 import {colorBase} from '../../../enums/AppColors';
 import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
+import {RootStackParamList} from '../../../types/screenStack';
 import {coverImageDefault} from '../../../utils/assets/Images';
 import {ImageColorPalette} from '../../../utils/colors/ColorsFromImg';
 import {StatusUpBar} from '../../StatusBar/StatusUpBar';
@@ -11,11 +16,6 @@ import {ActionsAndOptions} from '../components/ActionsAndOptions';
 import {ProgressAndTrackInfo} from '../components/ProgressAndTrackInfo';
 import {TrackCover} from '../components/TrackCover';
 import {TrackPlayerControls} from '../components/TrackPlayerControls';
-import {AntDesign} from '@expo/vector-icons';
-import RNBounceable from '@freakycoder/react-native-bounceable';
-import {useNavigation} from '@react-navigation/native';
-import {RootStackParamList} from '../../../types/screenStack';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export const PlayerScreen = () => {
   const activeTrack = useActiveTrack();
@@ -32,7 +32,7 @@ export const PlayerScreen = () => {
 
   useEffect(() => {
     getColorImage();
-  }, [getColorImage]);
+  }, [activeTrack?.artist]);
 
   const GoBackComponent = () => {
     return (
