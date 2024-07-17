@@ -32,7 +32,7 @@ export const PlayerScreen = () => {
 
   useEffect(() => {
     getColorImage();
-  }, [activeTrack?.artist]);
+  }, [activeTrack?.artwork]);
 
   const GoBackComponent = () => {
     return (

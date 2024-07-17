@@ -20,8 +20,7 @@ type FormData = {
 export const SearchForm: React.FC = () => {
   const {control, handleSubmit} = useForm<FormData>();
   const {setTrackList, setArtistList, setAlbumsList} = useSearchStore();
-  const navigateTo =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigateTo = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const onSubmit = async (data: FormData) => {
     try {
