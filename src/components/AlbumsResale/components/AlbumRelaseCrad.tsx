@@ -6,15 +6,20 @@ import {AlbumRelaseInterface} from '../../../interfaces/AlbumsRelase/AlbumsRelas
 import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
 import {ImageColorPalette} from '../../../utils/colors/ColorsFromImg';
 import styles from '../styles/AlbReleasedCrad';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../types/screenStack';
+import { useAlbumStore } from '../../../store/albumStore/albumStore';
 
 interface ArtistCard {
   albumRealseInfo: AlbumRelaseInterface;
 }
 
 export const AlbumRelaseCrad: React.FC<ArtistCard> = ({albumRealseInfo}) => {
-  const [colorTaget, setColorTaget] = useState<
-    AndroidColors | null | undefined
-  >(null);
+  const {setAlbumListStore} = useAlbumStore();
+  const [colorTaget, setColorTaget] = useState<AndroidColors | null>(null);
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const GetColorImage = async () => {
     const colorImg = await ImageColorPalette(albumRealseInfo.artwork);
@@ -28,7 +33,8 @@ export const AlbumRelaseCrad: React.FC<ArtistCard> = ({albumRealseInfo}) => {
   return (
     <RNBounceable
       onPress={() => {
-        console.log(albumRealseInfo.browseId);
+        setAlbumListStore(albumRealseInfo);
+        navigation.navigate('AlbumRealce');
       }}
       style={[
         styles.contentCard,

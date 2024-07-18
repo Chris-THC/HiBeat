@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {ActiveTrackCrad} from '../../components/ActiveTrackCrad/ActiveTrackCrad';
-import {AlbumHeader} from '../../components/Album/components/AlbumHeader';
-import {TrackListByAlbum} from '../../components/Album/components/TrackListByAlbum';
 import {StatusUpBar} from '../../components/StatusBar/StatusUpBar';
 import {colorBase} from '../../enums/AppColors';
 import {useStreamingAlbum} from '../../hooks/UseAlbum/UseAlbum';
@@ -11,15 +9,17 @@ import {AndroidColors} from '../../interfaces/colorsInterface/Colors';
 import {useAlbumStore} from '../../store/albumStore/albumStore';
 import {ImageColorPalette} from '../../utils/colors/ColorsFromImg';
 import {getThumbnailUrl} from '../../utils/selectImage/SelectImage';
+import {AlbumHeaderRealce} from './components/AlbumHeaderRealce';
+import {TrackListByAlbumRealce} from './components/TrackListRealce';
 // const navigation =
 //   useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-export const Album = () => {
-  const {albumInfoSelected} = useAlbumStore();
-  const thumbnailUrl = getThumbnailUrl(albumInfoSelected?.thumbnails);
+export const AlbumRealce = () => {
+  const {albumListStore} = useAlbumStore();
+  const thumbnailUrl = getThumbnailUrl(albumListStore?.artwork);
 
   const {isLoading, data: albumData} = useStreamingAlbum(
-    albumInfoSelected!.playlistId,
+    albumListStore!.playlistId,
     thumbnailUrl,
   );
 
@@ -32,7 +32,7 @@ export const Album = () => {
 
   useEffect(() => {
     GetColorImage();
-  }, [albumInfoSelected?.playlistId]);
+  }, [albumListStore?.playlistId]);
 
   if (isLoading) {
     return (
@@ -60,11 +60,11 @@ export const Album = () => {
           ]}
           locations={[0.01, 0.3, 1]}
           style={{flex: 1}}>
-          <AlbumHeader albumInfoSelected={albumInfoSelected!} />
+          <AlbumHeaderRealce albumInfoSelected={albumListStore!} />
         </LinearGradient>
       </>
       <View style={{height: 'auto', flex: 2.8}}>
-        <TrackListByAlbum topSongs={albumData!} />
+        <TrackListByAlbumRealce topSongs={albumData!} />
       </View>
       <ActiveTrackCrad />
     </View>

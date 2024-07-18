@@ -7,6 +7,7 @@ import {
 import React from 'react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Album} from '../screens/album/Album';
+import {AlbumsList} from '../screens/albumsList/AlbumsList';
 import {Artist} from '../screens/artist/Artist';
 import {Home} from '../screens/home/Home';
 import {Player} from '../screens/player/Player';
@@ -15,6 +16,7 @@ import {RandomPlayListStack} from '../screens/randomPlaylist/RandomPlaylistStack
 import {Search} from '../screens/search/Search';
 import {StackPlayer} from '../screens/stack/StackPlayer';
 import {RootStackParamList} from '../types/screenStack';
+import {AlbumRealce} from '../screens/AlbumRealce/AlbumRealce';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -66,6 +68,8 @@ const Navigation = () => {
             component={StackPlayer}
           />
           <Stack.Screen name="Playlist" component={Playlist} />
+          <Stack.Screen name="AlbumsList" component={AlbumsList} />
+          <Stack.Screen name="AlbumRealce" component={AlbumRealce} />
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>

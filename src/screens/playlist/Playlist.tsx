@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {ActiveTrackCrad} from '../../components/ActiveTrackCrad/ActiveTrackCrad';
 import {PlaylistHeader} from '../../components/PlaylistComponents/components/PlaylistHeader';
@@ -28,12 +28,14 @@ export const Playlist = () => {
   }, [playlistSelected?.browseId]);
 
   if (isLoading) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={styles.PublicPlaylistContent}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
   }
 
-  if (isError) {
-    return <Text>Hubo un error</Text>;
-  }
+  
 
   return (
     <View style={styles.PublicPlaylistContent}>

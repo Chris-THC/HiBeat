@@ -36,6 +36,8 @@ export const PlaylistCard: React.FC<PropCard> = ({playlist}) => {
       onPress={() => {
         setPlaylistSelected(playlist!);
         setIdPlaylist(playlist.browseId);
+        console.log(playlist.browseId);
+        
         navigateTo.navigate('Playlist');
       }}
       style={[

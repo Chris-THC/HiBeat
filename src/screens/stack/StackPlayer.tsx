@@ -1,9 +1,8 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {colorBase} from '../../enums/AppColors';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import {StatusUpBar} from '../../components/StatusBar/StatusUpBar';
 import {StackTracks} from '../../components/stackComponents/components/TracksStack';
-import TrackPlayer, {Track} from 'react-native-track-player';
+import {colorBase} from '../../enums/AppColors';
 import {useTrackStackStore} from '../../store/trackStackStore/GetTrackStore';
 
 export const StackPlayer: React.FC = () => {

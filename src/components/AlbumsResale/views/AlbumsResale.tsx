@@ -1,13 +1,20 @@
+import {FontAwesome6} from '@expo/vector-icons';
+import RNBounceable from '@freakycoder/react-native-bounceable';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View} from 'react-native';
 import {useAlbumRelase} from '../../../hooks/UseAlbumsRelase/UseAlbumRelase';
+import {useAlbumListStore} from '../../../store/albumResaleStore/AlbumsResaleStore';
+import {RootStackParamList} from '../../../types/screenStack';
+import {RecientlyAlbumLoader} from '../../../utils/skeleton/loaders/RecientlyAlbums/RecientlyAudioLoader';
 import {AlbumRelaseCrad} from '../components/AlbumRelaseCrad';
 import styles from '../styles/AlbResale';
-import {FontAwesome6} from '@expo/vector-icons';
-import {RecientlyAlbumLoader} from '../../../utils/skeleton/loaders/RecientlyAlbums/RecientlyAudioLoader';
 
 export const AlbumsResale = () => {
   const {isLoading: loadAlbum, data: albumsRelase, isError} = useAlbumRelase();
+  const {setAlbumListStore} = useAlbumListStore();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   if (loadAlbum) {
     return <RecientlyAlbumLoader />;
@@ -15,9 +22,16 @@ export const AlbumsResale = () => {
     return <Text>Something went wrong</Text>;
   }
 
+  const GoToAlbumScreen = () => {
+    setAlbumListStore(albumsRelase!);
+    navigation.navigate('AlbumsList');
+  };
+
   return (
     <View style={styles.albResaleContainer}>
-      <TouchableOpacity style={styles.mainTitleContainer}>
+      <RNBounceable
+        onPress={() => GoToAlbumScreen()}
+        style={styles.mainTitleContainer}>
         <View>
           <Text style={styles.albumsResaleMainTitle}>Recently albums</Text>
         </View>
@@ -28,7 +42,7 @@ export const AlbumsResale = () => {
             </Text>
           </View>
         </View>
-      </TouchableOpacity>
+      </RNBounceable>
       <View style={styles.albumGrid}>
         {albumsRelase!.slice(0, 9).map((albumItem, index) => (
           <AlbumRelaseCrad key={index} albumRealseInfo={albumItem} />
