@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View, Text} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {ActiveTrackCrad} from '../../components/ActiveTrackCrad/ActiveTrackCrad';
-import {AlbumHeader} from '../../components/Album/components/AlbumHeader';
-import {TrackListByAlbum} from '../../components/Album/components/TrackListByAlbum';
 import {StatusUpBar} from '../../components/StatusBar/StatusUpBar';
 import {colorBase} from '../../enums/AppColors';
 import {useStreamingAlbum} from '../../hooks/UseAlbum/UseAlbum';
@@ -11,13 +9,18 @@ import {AndroidColors} from '../../interfaces/colorsInterface/Colors';
 import {useAlbumStore} from '../../store/albumStore/albumStore';
 import {ImageColorPalette} from '../../utils/colors/ColorsFromImg';
 import {getThumbnailUrl} from '../../utils/selectImage/SelectImage';
-import { Text } from 'react-native-svg';
+import {AlbumHeaderRealce} from './components/AlbumHeaderRealce';
+import {TrackListByAlbumRealce} from './components/TrackListRealce';
 
-export const Album = () => {
-  const {albumInfoSelected} = useAlbumStore();
-  const thumbnailUrl = getThumbnailUrl(albumInfoSelected?.thumbnails);
+export const AlbumRealce = () => {
+  const {albumListStore} = useAlbumStore();
+  const thumbnailUrl = getThumbnailUrl(albumListStore?.artwork);
 
-  const {isLoading, data: albumData, isError} = useStreamingAlbum(albumInfoSelected!.playlistId, thumbnailUrl);
+  const {
+    isLoading,
+    data: albumData,
+    isError,
+  } = useStreamingAlbum(albumListStore!.playlistId, thumbnailUrl);
 
   const [colorTaget, setColorTaget] = useState<AndroidColors | null>(null);
 
@@ -28,18 +31,18 @@ export const Album = () => {
 
   useEffect(() => {
     GetColorImage();
-  }, [albumInfoSelected?.playlistId]);
+  }, [albumListStore?.playlistId]);
 
   if (isLoading) {
     return (
-      <View style={styles.someWasWorng}>
+      <View style={styles.somethinfWasWrong}>
         <ActivityIndicator size="large" color="#0000ff" />
       </View>
     );
   } else if (isError) {
     return (
-      <View style={styles.someWasWorng}>
-        <Text>Ups hay un error!</Text>
+      <View style={styles.somethinfWasWrong}>
+        <Text style={{color: '#fff', fontSize: 20}}>Ups hay un error..!</Text>
       </View>
     );
   }
@@ -56,11 +59,11 @@ export const Album = () => {
           ]}
           locations={[0.01, 0.3, 1]}
           style={{flex: 1}}>
-          <AlbumHeader albumInfoSelected={albumInfoSelected!} />
+          <AlbumHeaderRealce albumInfoSelected={albumListStore!} />
         </LinearGradient>
       </>
       <View style={{height: 'auto', flex: 2.8}}>
-        <TrackListByAlbum topSongs={albumData!} />
+        <TrackListByAlbumRealce topSongs={albumData!} />
       </View>
       <ActiveTrackCrad />
     </View>
@@ -108,12 +111,10 @@ const styles = StyleSheet.create({
     textShadowOffset: {width: -0.5, height: 1},
     textShadowRadius: 3,
   },
-  someWasWorng: {
+  somethinfWasWrong: {
     flex: 1,
     backgroundColor: colorBase,
     justifyContent: 'center',
     alignItems: 'center',
-    color:"#fff",
-    fontSize:20
   },
 });

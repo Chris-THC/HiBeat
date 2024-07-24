@@ -9,7 +9,6 @@ import TextTicker from 'react-native-text-ticker';
 import {useActiveTrack} from 'react-native-track-player';
 import {useIsTrackPlaying} from '../../services/TrackPlayerService/TrackPlayerStates';
 import {RootStackParamList} from '../../types/screenStack';
-import {coverImageDefault} from '../../utils/assets/Images';
 import {togglePlayback} from '../../services/TrackPlayerService/TrackPlayerEvents';
 
 export const ActiveTrackCrad: React.FC = () => {
@@ -25,10 +24,11 @@ export const ActiveTrackCrad: React.FC = () => {
       <View style={styles.imageContainer}>
         <FastImage
           style={styles.image}
-          source={{
-            uri: activeTrack?.artwork || coverImageDefault,
-            priority: FastImage.priority.high,
-          }}
+          source={
+            activeTrack?.artwork
+              ? {uri: activeTrack.artwork, priority: FastImage.priority.high}
+              : require('./image/TrackCover.jpg')
+          }
           resizeMode={FastImage.resizeMode.cover}
         />
       </View>

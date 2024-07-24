@@ -1,21 +1,21 @@
+import {AntDesign} from '@expo/vector-icons';
+import RNBounceable from '@freakycoder/react-native-bounceable';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useCallback, useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {useActiveTrack} from 'react-native-track-player';
 import {colorBase} from '../../../enums/AppColors';
 import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
-import {coverImageDefault} from '../../../utils/assets/Images';
+import {RootStackParamList} from '../../../types/screenStack';
 import {ImageColorPalette} from '../../../utils/colors/ColorsFromImg';
 import {StatusUpBar} from '../../StatusBar/StatusUpBar';
 import {ActionsAndOptions} from '../components/ActionsAndOptions';
 import {ProgressAndTrackInfo} from '../components/ProgressAndTrackInfo';
 import {TrackCover} from '../components/TrackCover';
 import {TrackPlayerControls} from '../components/TrackPlayerControls';
-import {AntDesign} from '@expo/vector-icons';
-import RNBounceable from '@freakycoder/react-native-bounceable';
-import {useNavigation} from '@react-navigation/native';
-import {RootStackParamList} from '../../../types/screenStack';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { coverImageDefault } from '../../../utils/assets/Images';
 
 export const PlayerScreen = () => {
   const activeTrack = useActiveTrack();
@@ -32,14 +32,14 @@ export const PlayerScreen = () => {
 
   useEffect(() => {
     getColorImage();
-  }, [getColorImage]);
+  }, [activeTrack?.artwork]);
 
   const GoBackComponent = () => {
     return (
       <RNBounceable
         onPress={() => navigation.goBack()}
         style={styles.btnGoBack}>
-        <AntDesign name="down" size={30} color="#fff" />
+        <AntDesign name="down" size={26} color="#ccc" />
       </RNBounceable>
     );
   };
@@ -52,7 +52,7 @@ export const PlayerScreen = () => {
       <StatusUpBar backgroundColor={colorCover?.dominant || colorBase} />
       <GoBackComponent />
       <View style={styles.imageContainer}>
-        <TrackCover cover={activeTrack?.artwork!} />
+        <TrackCover cover={activeTrack?.artwork} />
       </View>
       <View style={styles.titleProgressContainer}>
         <ProgressAndTrackInfo

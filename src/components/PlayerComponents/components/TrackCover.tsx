@@ -1,10 +1,9 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {coverImageDefault} from '../../../utils/assets/Images';
 
 interface PropsTrack {
-  cover: string;
+  cover: string | null | undefined;
 }
 
 export const TrackCover: React.FC<PropsTrack> = ({cover}) => {
@@ -12,10 +11,11 @@ export const TrackCover: React.FC<PropsTrack> = ({cover}) => {
     <View>
       <FastImage
         style={styles.imgStyles}
-        source={{
-          uri: cover || coverImageDefault,
-          priority: FastImage.priority.high,
-        }}
+        source={
+          cover
+            ? {uri: cover, priority: FastImage.priority.high}
+            : require('../image/TrackCover.jpg')
+        }
         resizeMode={FastImage.resizeMode.cover}
       />
     </View>
@@ -24,8 +24,8 @@ export const TrackCover: React.FC<PropsTrack> = ({cover}) => {
 
 const styles = StyleSheet.create({
   imgStyles: {
-    height: 375,
-    width: 375,
+    height: 350,
+    width: 350,
     borderRadius: 10,
   },
 });

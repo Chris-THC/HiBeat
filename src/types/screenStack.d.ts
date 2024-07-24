@@ -7,4 +7,6 @@ export type RootStackParamList = {
   Search: undefined;
   StackPlayer: undefined;
   Playlist: undefined;
+  AlbumsList: undefined;
+  AlbumRealce: undefined;
 };

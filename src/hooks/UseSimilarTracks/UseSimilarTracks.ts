@@ -2,9 +2,7 @@ import axios from 'axios';
 import {getStreamingData} from '../../services/streaming/StreamingTrack';
 import {AddTrack} from 'react-native-track-player';
 
-export const SuggestionsTrackListFuntion = async (
-  idTrack: string,
-): Promise<AddTrack[] | null> => {
+export const SuggestionsTrackListFuntion = async (idTrack: string): Promise<AddTrack[] | null> => {
   const url =
     'https://music.youtube.com/youtubei/v1/next?key=AIzaSyC9XL3ZjWddXya6X74dJoCTL-WEYFDNX30&prettyPrint=false';
 

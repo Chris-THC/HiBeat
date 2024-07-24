@@ -1,10 +1,7 @@
 import axios from 'axios';
 import {AlbumStreaming} from '../../interfaces/AlbumSearch/AlbumStreaming';
 
-export const streamingAlbumByPlaylistId = async (
-  idPlaylist: string,
-  imgCover: string,
-): Promise<AlbumStreaming[] | null> => {
+export const streamingAlbumByPlaylistId = async (idPlaylist: string, imgCover: string,): Promise<AlbumStreaming[] | null> => {
   try {
     let properUrl = `https://m.youtube.com/playlist?list=${idPlaylist}`;
     const resp = await axios.get(properUrl);
