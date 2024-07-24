@@ -21,8 +21,8 @@ export const TopArtist = () => {
     );
   } else if (isError) {
     return (
-      <View>
-        <Text style={{fontSize: 20, color: '#fff'}}>Ocurrio un error</Text>
+      <View style={styles.topArtistContent}>
+        <Text style={{fontSize: 20, color: '#fff'}}>Something was wrong..!</Text>
       </View>
     );
   }

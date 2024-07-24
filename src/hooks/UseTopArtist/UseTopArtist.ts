@@ -57,7 +57,7 @@ export const getTopArtistAxios = async () => {
   }
 };
 
-export const useTopArtistGlobal = (): UseQueryResult<TopArtistInterface[]> => {
+export const useTopArtistGlobal = (): UseQueryResult<TopArtistInterface[], Error> => {
   return useQuery({
     queryKey: ['topArtist'],
     queryFn: getTopArtistAxios,

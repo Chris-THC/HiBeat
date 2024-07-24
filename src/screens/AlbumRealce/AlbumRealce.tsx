@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View, Text} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {ActiveTrackCrad} from '../../components/ActiveTrackCrad/ActiveTrackCrad';
 import {StatusUpBar} from '../../components/StatusBar/StatusUpBar';
@@ -11,17 +11,16 @@ import {ImageColorPalette} from '../../utils/colors/ColorsFromImg';
 import {getThumbnailUrl} from '../../utils/selectImage/SelectImage';
 import {AlbumHeaderRealce} from './components/AlbumHeaderRealce';
 import {TrackListByAlbumRealce} from './components/TrackListRealce';
-// const navigation =
-//   useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
 export const AlbumRealce = () => {
   const {albumListStore} = useAlbumStore();
   const thumbnailUrl = getThumbnailUrl(albumListStore?.artwork);
 
-  const {isLoading, data: albumData} = useStreamingAlbum(
-    albumListStore!.playlistId,
-    thumbnailUrl,
-  );
+  const {
+    isLoading,
+    data: albumData,
+    isError,
+  } = useStreamingAlbum(albumListStore!.playlistId, thumbnailUrl);
 
   const [colorTaget, setColorTaget] = useState<AndroidColors | null>(null);
 
@@ -36,14 +35,14 @@ export const AlbumRealce = () => {
 
   if (isLoading) {
     return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: colorBase,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.somethinfWasWrong}>
         <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  } else if (isError) {
+    return (
+      <View style={styles.somethinfWasWrong}>
+        <Text style={{color: '#fff', fontSize: 20}}>Ups hay un error..!</Text>
       </View>
     );
   }
@@ -111,5 +110,11 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(1, 0, 0, 1)',
     textShadowOffset: {width: -0.5, height: 1},
     textShadowRadius: 3,
+  },
+  somethinfWasWrong: {
+    flex: 1,
+    backgroundColor: colorBase,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -19,7 +19,11 @@ export const AlbumsResale = () => {
   if (loadAlbum) {
     return <RecientlyAlbumLoader />;
   } else if (isError) {
-    return <Text>Something went wrong</Text>;
+    return (
+      <View style={styles.albResaleContainer}>
+        <Text>Something went wrong</Text>
+      </View>
+    );
   }
 
   const GoToAlbumScreen = () => {

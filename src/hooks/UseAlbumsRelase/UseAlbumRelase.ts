@@ -61,7 +61,7 @@ export const AlbumRelaseFuntion = async () => {
   }
 };
 
-export const useAlbumRelase = (): UseQueryResult<AlbumRelaseInterface[]> => {
+export const useAlbumRelase = (): UseQueryResult<AlbumRelaseInterface[], Error> => {
   return useQuery({
     queryKey: ['albumRelaseFN'],
     queryFn: AlbumRelaseFuntion,

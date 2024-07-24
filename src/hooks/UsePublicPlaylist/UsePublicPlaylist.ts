@@ -58,9 +58,7 @@ export const publicPlayList = async (
   }
 };
 
-export const usePlaylistPublic = (
-  browseId: string,
-): UseQueryResult<PublicPlaylist[], Error> => {
+export const usePlaylistPublic = (browseId: string): UseQueryResult<PublicPlaylist[], Error> => {
   return useQuery({
     queryKey: ['publicPlaylistKey', publicPlayList],
     queryFn: () => publicPlayList(browseId),

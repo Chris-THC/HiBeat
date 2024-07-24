@@ -9,13 +9,13 @@ import {useActiveTrack} from 'react-native-track-player';
 import {colorBase} from '../../../enums/AppColors';
 import {AndroidColors} from '../../../interfaces/colorsInterface/Colors';
 import {RootStackParamList} from '../../../types/screenStack';
-import {coverImageDefault} from '../../../utils/assets/Images';
 import {ImageColorPalette} from '../../../utils/colors/ColorsFromImg';
 import {StatusUpBar} from '../../StatusBar/StatusUpBar';
 import {ActionsAndOptions} from '../components/ActionsAndOptions';
 import {ProgressAndTrackInfo} from '../components/ProgressAndTrackInfo';
 import {TrackCover} from '../components/TrackCover';
 import {TrackPlayerControls} from '../components/TrackPlayerControls';
+import { coverImageDefault } from '../../../utils/assets/Images';
 
 export const PlayerScreen = () => {
   const activeTrack = useActiveTrack();
@@ -39,7 +39,7 @@ export const PlayerScreen = () => {
       <RNBounceable
         onPress={() => navigation.goBack()}
         style={styles.btnGoBack}>
-        <AntDesign name="down" size={30} color="#fff" />
+        <AntDesign name="down" size={26} color="#ccc" />
       </RNBounceable>
     );
   };
@@ -52,7 +52,7 @@ export const PlayerScreen = () => {
       <StatusUpBar backgroundColor={colorCover?.dominant || colorBase} />
       <GoBackComponent />
       <View style={styles.imageContainer}>
-        <TrackCover cover={activeTrack?.artwork!} />
+        <TrackCover cover={activeTrack?.artwork} />
       </View>
       <View style={styles.titleProgressContainer}>
         <ProgressAndTrackInfo

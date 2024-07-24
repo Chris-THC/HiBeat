@@ -11,17 +11,13 @@ import {AndroidColors} from '../../interfaces/colorsInterface/Colors';
 import {useAlbumStore} from '../../store/albumStore/albumStore';
 import {ImageColorPalette} from '../../utils/colors/ColorsFromImg';
 import {getThumbnailUrl} from '../../utils/selectImage/SelectImage';
-// const navigation =
-//   useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+import { Text } from 'react-native-svg';
 
 export const Album = () => {
   const {albumInfoSelected} = useAlbumStore();
   const thumbnailUrl = getThumbnailUrl(albumInfoSelected?.thumbnails);
 
-  const {isLoading, data: albumData} = useStreamingAlbum(
-    albumInfoSelected!.playlistId,
-    thumbnailUrl,
-  );
+  const {isLoading, data: albumData, isError} = useStreamingAlbum(albumInfoSelected!.playlistId, thumbnailUrl);
 
   const [colorTaget, setColorTaget] = useState<AndroidColors | null>(null);
 
@@ -36,14 +32,14 @@ export const Album = () => {
 
   if (isLoading) {
     return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: colorBase,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.someWasWorng}>
         <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  } else if (isError) {
+    return (
+      <View style={styles.someWasWorng}>
+        <Text>Ups hay un error!</Text>
       </View>
     );
   }
@@ -111,5 +107,13 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(1, 0, 0, 1)',
     textShadowOffset: {width: -0.5, height: 1},
     textShadowRadius: 3,
+  },
+  someWasWorng: {
+    flex: 1,
+    backgroundColor: colorBase,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color:"#fff",
+    fontSize:20
   },
 });

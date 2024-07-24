@@ -11,7 +11,7 @@ export const serachTracksFuntion = async (track: string): Promise<SongDetailed[]
     return searchInfo;
   } catch (error) {
     console.log(error);
-    return undefined;
+    return null;
   }
 };
 
@@ -22,7 +22,7 @@ export const serachArtistFuntion = async (artist: string): Promise<ArtistDetaile
     return artistInfo;
   } catch (error) {
     console.log(error);
-    return undefined;
+    return null;
   }
 };
 
